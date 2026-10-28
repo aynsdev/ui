@@ -1,0 +1,160 @@
+/*
+ * Data & feedback — table, empty state, skeleton, spinner, progress.
+ *
+ * <div class="ui-table-wrap">
+ *   <table class="ui-table">
+ *     <thead><tr><th>Name</th><th class="is-numeric">Amount</th></tr></thead>
+ *     <tbody><tr><td>Invoice 204</td><td class="is-numeric">₱12,400.00</td></tr></tbody>
+ *   </table>
+ * </div>
+ */
+
+.ui-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.ui-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-ui);
+  line-height: 1.4;
+}
+
+.ui-table th {
+  height: 38px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ui-table td {
+  height: 44px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  white-space: nowrap;
+}
+.ui-table td.is-wrap { white-space: normal; min-width: 240px; padding-block: 10px; }
+.ui-table tbody tr:last-child td { border-bottom: 0; }
+.ui-table tbody tr { transition: background-color var(--motion-fast) var(--ease-ui); }
+.ui-table tbody tr:hover { background: color-mix(in srgb, var(--surface-hover) 50%, transparent); }
+.ui-table tbody tr[aria-selected="true"] { background: var(--surface-2); }
+
+.ui-table .is-numeric { text-align: right; font-variant-numeric: tabular-nums; }
+.ui-table .is-muted { color: var(--text-muted); }
+.ui-table .is-shrink { width: 1%; white-space: nowrap; }
+
+.ui-table--compact th { height: 32px; }
+.ui-table--compact td { height: 36px; }
+
+.ui-table--sticky thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Sortable header: <th aria-sort="ascending"><button class="ui-table__sort">Amount</button></th> */
+.ui-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 -4px;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.ui-table__sort:hover { color: var(--text); }
+.ui-table__sort::after { content: "↕"; opacity: 0.4; font-size: 10px; }
+[aria-sort="ascending"] .ui-table__sort,
+[aria-sort="descending"] .ui-table__sort { color: var(--text); }
+[aria-sort="ascending"] .ui-table__sort::after { content: "↑"; opacity: 1; }
+[aria-sort="descending"] .ui-table__sort::after { content: "↓"; opacity: 1; }
+.ui-table__sort:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* Empty state */
+.ui-empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+}
+.ui-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-muted);
+}
+.ui-empty__icon > svg { width: 18px; height: 18px; }
+.ui-empty__title { font-size: 15px; font-weight: var(--weight-semibold); letter-spacing: -0.012em; }
+.ui-empty__body { max-width: 360px; color: var(--text-muted); font-size: var(--text-body); }
+.ui-empty__actions { display: flex; gap: var(--space-2); margin-top: var(--space-3); }
+
+/* Skeleton */
+.ui-skeleton {
+  display: block;
+  height: 12px;
+  border-radius: var(--radius-xs);
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--surface) 60%, transparent), transparent) 0 0 / 200% 100% no-repeat,
+    var(--surface-2);
+  animation: ui-shimmer 1.6s ease-in-out infinite;
+}
+.ui-skeleton--text { height: 12px; margin: 4px 0; }
+.ui-skeleton--title { height: 18px; width: 40%; }
+.ui-skeleton--circle { width: 32px; height: 32px; border-radius: 50%; }
+.ui-skeleton--block { height: 96px; border-radius: var(--radius-md); }
+
+@keyframes ui-shimmer {
+  from { background-position: 150% 0, 0 0; }
+  to { background-position: -50% 0, 0 0; }
+}
+
+/* Spinner: <span class="ui-spinner" role="status" aria-label="Loading"></span> */
+.ui-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1.75px solid var(--border-strong);
+  border-top-color: var(--text);
+  border-radius: 50%;
+  animation: ui-spin 0.7s linear infinite;
+}
+.ui-spinner--sm { width: 12px; height: 12px; border-width: 1.5px; }
+.ui-spinner--lg { width: 24px; height: 24px; border-width: 2px; }
+
+/* Progress: <div class="ui-progress" role="progressbar" aria-valuenow="40" style="--value: 40%"> */
+.ui-progress {
+  position: relative;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+}
+.ui-progress::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--value, 0%);
+  border-radius: inherit;
+  background: var(--text);
+  transition: width var(--motion-slow) var(--ease-layout);
+}
+.ui-progress--brand::before { background: var(--brand); }
+.ui-progress--success::before { background: var(--success); }
+
+@keyframes ui-spin { to { transform: rotate(360deg); } }

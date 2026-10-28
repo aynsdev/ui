@@ -1,0 +1,143 @@
+/*
+ * Navigation — tabs, sidebar nav, breadcrumbs, pagination.
+ *
+ * Tabs (keyboard handled by ui.js):
+ * <div class="ui-tabs" role="tablist" aria-label="Settings">
+ *   <button class="ui-tab" role="tab" aria-selected="true" aria-controls="p1">General</button>
+ * </div>
+ *
+ * Sidebar:
+ * <nav class="ui-nav"><a class="ui-nav__item" aria-current="page" href="#">Overview</a></nav>
+ */
+
+.ui-tabs {
+  display: flex;
+  gap: var(--space-5);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ui-tabs::-webkit-scrollbar { display: none; }
+
+.ui-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--motion-fast) var(--ease-ui);
+}
+.ui-tab > svg { width: 15px; height: 15px; }
+.ui-tab:hover { color: var(--text); }
+.ui-tab[aria-selected="true"],
+.ui-tab[aria-current="page"] { color: var(--text); }
+.ui-tab[aria-selected="true"]::after,
+.ui-tab[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--text);
+}
+.ui-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: 4px; }
+.ui-tab .ui-badge { height: 18px; padding: 0 6px; font-size: var(--text-micro); }
+
+.ui-tab-panel:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
+
+/* Sidebar navigation */
+.ui-nav {
+  display: grid;
+  gap: 1px;
+}
+
+.ui-nav__section {
+  padding: var(--space-4) 10px 6px;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  color: var(--text-subtle);
+}
+.ui-nav__section:first-child { padding-top: 0; }
+
+.ui-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: background-color var(--motion-fast) var(--ease-ui), color var(--motion-fast) var(--ease-ui);
+}
+.ui-nav__item > svg { width: 16px; height: 16px; flex-shrink: 0; }
+.ui-nav__item:hover { background: var(--surface-hover); color: var(--text); }
+.ui-nav__item[aria-current="page"] { background: var(--surface-2); color: var(--text); }
+.ui-nav__item:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.ui-nav__meta { margin-left: auto; font-size: var(--text-caption); color: var(--text-subtle); font-variant-numeric: tabular-nums; }
+
+@media (pointer: coarse) {
+  .ui-nav__item { height: var(--touch-target); }
+}
+
+/* Breadcrumbs */
+.ui-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-ui);
+  color: var(--text-muted);
+}
+.ui-breadcrumbs li { display: inline-flex; align-items: center; gap: 6px; }
+.ui-breadcrumbs li + li::before { content: "/"; color: var(--border-strong); }
+.ui-breadcrumbs a { color: inherit; text-decoration: none; }
+.ui-breadcrumbs a:hover { color: var(--text); }
+.ui-breadcrumbs [aria-current="page"] { color: var(--text); font-weight: var(--weight-medium); }
+
+/* Pagination */
+.ui-pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-ui);
+}
+.ui-pagination__page {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ui-pagination__page:hover { background: var(--surface-hover); color: var(--text); }
+.ui-pagination__page[aria-current="page"] { background: var(--surface-2); color: var(--text); font-weight: var(--weight-semibold); }
+.ui-pagination__page:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }

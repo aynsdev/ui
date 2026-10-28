@@ -1,0 +1,64 @@
+/*
+ * Segmented control — switches a related mode or filter (not navigation; use tabs for that).
+ * Keyboard support (arrows, Home/End) comes from ui.js.
+ *
+ * <div class="ui-segmented" role="radiogroup" aria-label="Theme">
+ *   <button class="ui-segmented__item" role="radio" aria-checked="true">System</button>
+ *   <button class="ui-segmented__item" role="radio" aria-checked="false">Light</button>
+ * </div>
+ */
+
+.ui-segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.ui-segmented__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-ui),
+    color var(--motion-fast) var(--ease-ui),
+    border-color var(--motion-fast) var(--ease-ui);
+}
+.ui-segmented__item > svg { width: 14px; height: 14px; }
+
+.ui-segmented__item:hover:not([aria-checked="true"], [aria-pressed="true"]) { color: var(--text); }
+
+.ui-segmented__item[aria-checked="true"],
+.ui-segmented__item[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: 0 1px 2px rgb(16 17 19 / 0.06);
+}
+
+:root[data-theme="dark"] .ui-segmented__item:is([aria-checked="true"], [aria-pressed="true"]) { background: var(--surface-hover); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ui-segmented__item:is([aria-checked="true"], [aria-pressed="true"]) { background: var(--surface-hover); }
+}
+
+.ui-segmented__item:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.ui-segmented__item:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.ui-segmented--sm .ui-segmented__item { height: 24px; padding: 0 10px; font-size: var(--text-caption); border-radius: var(--radius-xs); }
+.ui-segmented--lg .ui-segmented__item { height: 32px; padding: 0 14px; }
+.ui-segmented--block { display: flex; }
+.ui-segmented--block .ui-segmented__item { flex: 1; }

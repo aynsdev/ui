@@ -1,0 +1,43 @@
+{
+  "name": "@aynsdev/design-system",
+  "version": "1.0.0",
+  "description": "A refined, minimalist design system: tokens, CSS components and a tiny behaviour script. Framework-agnostic.",
+  "license": "MIT",
+  "type": "module",
+  "style": "dist/design-system.css",
+  "exports": {
+    ".": "./dist/design-system.css",
+    "./css": "./src/index.css",
+    "./tokens.css": "./src/tokens.css",
+    "./base.css": "./src/base.css",
+    "./typography.css": "./src/typography.css",
+    "./layout.css": "./src/layout.css",
+    "./fonts.css": "./src/fonts.css",
+    "./tailwind.css": "./src/tailwind.css",
+    "./components/*": "./src/components/*",
+    "./ui.js": "./src/ui.js",
+    "./tokens.json": "./tokens/tokens.json",
+    "./DESIGN.md": "./DESIGN.md",
+    "./PROJECT_THEME.md": "./PROJECT_THEME.md"
+  },
+  "files": [
+    "src",
+    "dist",
+    "tokens",
+    "DESIGN.md",
+    "PROJECT_THEME.md"
+  ],
+  "sideEffects": [
+    "*.css",
+    "./src/ui.js"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "docs": "npx --yes serve . -l 4321",
+    "prepare": "node scripts/build.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/aynsdev/design-system.git"
+  }
+}

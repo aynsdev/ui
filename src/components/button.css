@@ -1,0 +1,171 @@
+/*
+ * Button — signature component.
+ *
+ * <button class="ui-button">Save changes</button>
+ * <button class="ui-button ui-button--secondary ui-button--sm">Cancel</button>
+ * <button class="ui-button ui-button--lg ui-button--pill">Get started</button>
+ * <button class="ui-button" aria-busy="true">Saving</button>   → loading, width preserved
+ *
+ * Variants: (primary) --secondary --soft --ghost --danger --brand --link
+ * Sizes:    --xs --sm (md) --lg --xl      Shape: --pill   Layout: --block
+ */
+
+.ui-button {
+  --_h: var(--control-md);
+  --_px: 16px;
+  --_fs: var(--text-ui);
+  --_fw: var(--weight-semibold);
+  --_r: var(--radius-md);
+  --_icon: 16px;
+  --_bg: var(--action);
+  --_bg-hover: color-mix(in srgb, var(--action) 86%, var(--bg));
+  --_bg-active: color-mix(in srgb, var(--action) 76%, var(--bg));
+  --_fg: var(--action-text);
+  --_border: transparent;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--_h);
+  padding: 0 var(--_px);
+  border: 1px solid var(--_border);
+  border-radius: var(--_r);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--font-ui);
+  font-size: var(--_fs);
+  font-weight: var(--_fw);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--motion-fast) var(--ease-ui),
+    border-color var(--motion-fast) var(--ease-ui),
+    color var(--motion-fast) var(--ease-ui),
+    transform var(--motion-fast) var(--ease-ui);
+}
+
+.ui-button > svg {
+  width: var(--_icon);
+  height: var(--_icon);
+  flex-shrink: 0;
+}
+
+.ui-button:hover:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) { background: var(--_bg-hover); }
+.ui-button:active:not(:disabled, [aria-disabled="true"], [aria-busy="true"]) {
+  background: var(--_bg-active);
+  transform: translateY(1px);
+}
+
+.ui-button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.ui-button:disabled,
+.ui-button[aria-disabled="true"] {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+/* Loading: label hidden, spinner centred, width unchanged */
+.ui-button[aria-busy="true"] {
+  color: transparent;
+  cursor: progress;
+}
+.ui-button[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: var(--_icon);
+  height: var(--_icon);
+  margin: auto;
+  border: 1.75px solid var(--_fg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ui-spin 0.7s linear infinite;
+}
+
+/* Variants */
+.ui-button--secondary {
+  --_bg: var(--surface);
+  --_bg-hover: var(--surface-2);
+  --_bg-active: var(--surface-hover);
+  --_fg: var(--text);
+  --_border: var(--border);
+}
+.ui-button--secondary:hover:not(:disabled) { border-color: var(--border-strong); }
+
+.ui-button--soft {
+  --_bg: var(--surface-2);
+  --_bg-hover: var(--surface-hover);
+  --_bg-active: var(--surface-pressed);
+  --_fg: var(--text);
+}
+
+.ui-button--ghost {
+  --_bg: transparent;
+  --_bg-hover: var(--surface-hover);
+  --_bg-active: var(--surface-pressed);
+  --_fg: var(--text);
+  --_fw: var(--weight-medium);
+}
+
+.ui-button--danger {
+  --_bg: var(--danger);
+  --_bg-hover: color-mix(in srgb, var(--danger) 88%, var(--text));
+  --_bg-active: color-mix(in srgb, var(--danger) 78%, var(--text));
+  --_fg: var(--on-danger);
+}
+
+.ui-button--danger-soft {
+  --_bg: color-mix(in srgb, var(--danger) 10%, transparent);
+  --_bg-hover: color-mix(in srgb, var(--danger) 16%, transparent);
+  --_bg-active: color-mix(in srgb, var(--danger) 22%, transparent);
+  --_fg: var(--danger);
+}
+
+.ui-button--brand {
+  --_bg: var(--brand);
+  --_bg-hover: var(--brand-hover);
+  --_bg-active: color-mix(in srgb, var(--brand) 78%, var(--bg));
+  --_fg: var(--on-brand);
+}
+
+.ui-button--link {
+  --_bg: transparent;
+  --_bg-hover: transparent;
+  --_bg-active: transparent;
+  --_fg: var(--text);
+  --_px: 0;
+  --_fw: var(--weight-medium);
+  height: auto;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+}
+.ui-button--link:hover { text-decoration-color: currentColor; }
+.ui-button--link:active { transform: none; }
+
+/* Sizes */
+.ui-button--xs { --_h: var(--control-xs); --_px: 10px; --_fs: var(--text-caption); --_fw: var(--weight-medium); --_r: var(--radius-sm); --_icon: 14px; gap: 6px; }
+.ui-button--sm { --_h: var(--control-sm); --_px: 12px; --_fs: var(--text-ui); --_fw: var(--weight-medium); --_r: var(--radius-sm); --_icon: 14px; gap: 6px; }
+.ui-button--lg { --_h: var(--control-lg); --_px: 20px; --_fs: 14px; --_r: 12px; --_icon: 18px; }
+.ui-button--xl { --_h: var(--control-xl); --_px: 24px; --_fs: 15px; --_r: var(--radius-pill); --_icon: 18px; }
+
+.ui-button--pill { --_r: var(--radius-pill); }
+.ui-button--block { display: flex; width: 100%; }
+
+/* Button group: joined secondary buttons */
+.ui-button-group { display: inline-flex; }
+.ui-button-group > .ui-button:not(:first-child) { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px; }
+.ui-button-group > .ui-button:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.ui-button-group > .ui-button:focus-visible { z-index: 1; }
+
+@keyframes ui-spin { to { transform: rotate(360deg); } }

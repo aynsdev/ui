@@ -1,0 +1,98 @@
+/*
+ * Tailwind CSS v4 bridge — maps the design tokens to Tailwind utilities.
+ *
+ *   @import "tailwindcss";
+ *   @import "@aynsdev/design-system/tokens.css";
+ *   @import "@aynsdev/design-system/tailwind.css";
+ *
+ * Then: bg-surface text-muted border-border rounded-md h-control-md text-ui shadow-menu …
+ *
+ * Colours and shadows reference the CSS variables so light/dark keeps working.
+ * Scales whose Tailwind names match a token name (radius, text sizes, easing, mono font)
+ * use literal values that mirror tokens.css — a var() there would reference itself.
+ */
+
+@theme inline {
+  --font-sans: var(--font-ui);
+  --font-mono: "Geist Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-pressed: var(--surface-pressed);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-action: var(--action);
+  --color-action-text: var(--action-text);
+  --color-danger: var(--danger);
+  --color-on-danger: var(--on-danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-focus: var(--focus);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-brand-soft: var(--brand-soft);
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  --text-display: clamp(44px, 5.5vw, 80px);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.05em;
+  --text-display--font-weight: 600;
+  --text-h1: clamp(32px, 4vw, 52px);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.045em;
+  --text-h1--font-weight: 600;
+  --text-h2: 28px;
+  --text-h2--line-height: 1.18;
+  --text-h2--letter-spacing: -0.035em;
+  --text-h2--font-weight: 600;
+  --text-h3: 22px;
+  --text-h3--line-height: 1.24;
+  --text-h3--letter-spacing: -0.025em;
+  --text-h3--font-weight: 600;
+  --text-h4: 18px;
+  --text-h4--line-height: 1.35;
+  --text-h4--letter-spacing: -0.018em;
+  --text-h4--font-weight: 600;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 1.6;
+  --text-body: 14px;
+  --text-body--line-height: 1.5;
+  --text-ui: 13px;
+  --text-ui--line-height: 1.35;
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-micro: 11px;
+  --text-micro--line-height: 1.3;
+
+  --spacing-control-xs: 28px;
+  --spacing-control-sm: 32px;
+  --spacing-control-md: 38px;
+  --spacing-control-lg: 44px;
+  --spacing-control-xl: 48px;
+
+  --shadow-menu: var(--shadow-popover);
+  --shadow-modal: var(--shadow-dialog);
+
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-layout: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* `dark:` follows the OS unless data-theme forces a mode */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) { @slot; }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *) { @slot; }
+  }
+}
