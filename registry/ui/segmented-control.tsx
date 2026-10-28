@@ -7,7 +7,7 @@ import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const segmentedItemVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap text-muted-foreground transition-[background-color,color,border-color] duration-150 ease-out outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-[0_1px_2px_rgb(0_0_0/0.06),0_0_0_1px_rgb(0_0_0/0.04)] dark:data-[state=on]:bg-accent dark:data-[state=on]:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap text-muted-foreground transition-[background-color,color,border-color] duration-150 ease-out outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-[0_1px_2px_rgb(0_0_0/0.06),0_0_0_1px_rgb(0_0_0/0.04)] dark:data-[state=on]:bg-pressed dark:data-[state=on]:shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
   {
     variants: {
       size: {

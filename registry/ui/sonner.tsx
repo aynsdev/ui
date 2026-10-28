@@ -26,7 +26,7 @@ function Toaster({ ...props }: ToasterProps) {
           icon: "mt-0.5 shrink-0",
           content: "grid min-w-0 flex-1 gap-0.5",
           title: "font-medium leading-snug",
-          description: "text-[13px] leading-normal font-normal text-muted-foreground",
+          description: "text-[13px] leading-normal text-muted-foreground",
           actionButton:
             "inline-flex h-7 shrink-0 items-center rounded-full bg-primary px-3 text-xs font-medium text-primary-foreground hover:bg-primary/88",
           cancelButton:

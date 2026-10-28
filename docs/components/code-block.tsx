@@ -48,7 +48,7 @@ export function CodeBlock({
       <CopyButton text={code} className={cn("absolute right-2", title ? "top-1" : "top-2")} />
       <pre
         className={cn(
-          "overflow-x-auto px-4 py-3.5 font-mono text-[12.5px] leading-[1.7] font-normal text-foreground [tab-size:2]",
+          "overflow-x-auto py-3.5 pr-14 pl-4 font-mono text-[12.5px] leading-[1.7] font-normal text-foreground [tab-size:2]",
           long && !expanded && "max-h-72 overflow-y-hidden"
         )}
       >

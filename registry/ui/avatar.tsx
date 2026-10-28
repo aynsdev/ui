@@ -7,17 +7,18 @@ import { Avatar as AvatarPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden bg-secondary shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--foreground)_8%,transparent)]",
+  "relative flex shrink-0 overflow-hidden bg-accent select-none",
   {
     variants: {
       size: {
-        sm: "size-6 text-[9px]",
-        default: "size-8 text-xs",
-        lg: "size-10 text-[15px]",
+        sm: "size-8 text-xs",
+        default: "size-10 text-sm",
+        lg: "size-12 text-base",
+        xl: "size-16 text-xl",
       },
       shape: {
         circle: "rounded-full",
-        square: "rounded-[30%]",
+        square: "rounded-[28%]",
       },
     },
     defaultVariants: { size: "default", shape: "circle" },
@@ -42,18 +43,18 @@ function AvatarFallback({ className, ...props }: React.ComponentProps<typeof Ava
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
-      className={cn("flex size-full items-center justify-center font-semibold text-muted-foreground", className)}
+      className={cn("flex size-full items-center justify-center font-semibold tracking-[-0.01em] text-accent-foreground uppercase", className)}
       {...props}
     />
   )
 }
 
-/** Overlapping avatars. Show 3–5, then a "+N" count. */
+/** Overlapping avatars. Show 3–5, then a "+N" count. The ring matches the page; set ring-card on a card. */
 function AvatarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="avatar-group"
-      className={cn("flex -space-x-1.5 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background", className)}
+      className={cn("flex items-center -space-x-1.5 *:data-[slot=avatar]:ring-[3px] *:data-[slot=avatar]:ring-background", className)}
       {...props}
     />
   )

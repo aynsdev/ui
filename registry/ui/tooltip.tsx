@@ -30,6 +30,7 @@ function TooltipContent({ className, sideOffset = 6, children, ...props }: React
         sideOffset={sideOffset}
         className={cn(
           "z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-lg bg-primary px-2.5 py-1.5 text-xs leading-tight font-medium text-balance text-primary-foreground",
+          "[&_[data-slot=kbd]]:border-primary-foreground/20 [&_[data-slot=kbd]]:bg-primary-foreground/10 [&_[data-slot=kbd]]:text-primary-foreground",
           "animate-in fade-in-0 zoom-in-97 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-97",
           className
         )}

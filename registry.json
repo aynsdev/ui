@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "aynsdev",
-  "homepage": "https://github.com/aynsdev/design-system",
+  "homepage": "https://github.com/aynsdev/ui",
   "items": [
     {
       "name": "theme",

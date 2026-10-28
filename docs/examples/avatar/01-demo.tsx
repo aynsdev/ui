@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "@/components/u
 
 export default function AvatarDemo() {
   return (
-    <div className="flex items-center gap-6">
-      <Avatar size="lg">
+    <div className="flex flex-wrap items-center gap-8">
+      <Avatar>
         <AvatarImage src="https://github.com/aynsdev.png" alt="aynsdev" />
         <AvatarFallback>AY</AvatarFallback>
       </Avatar>
@@ -13,7 +13,8 @@ export default function AvatarDemo() {
       <AvatarGroup>
         <Avatar><AvatarFallback>JD</AvatarFallback></Avatar>
         <Avatar><AvatarFallback>MK</AvatarFallback></Avatar>
-        <Avatar><AvatarFallback>+3</AvatarFallback></Avatar>
+        <Avatar><AvatarFallback>SL</AvatarFallback></Avatar>
+        <Avatar><AvatarFallback className="text-muted-foreground">+3</AvatarFallback></Avatar>
       </AvatarGroup>
     </div>
   )

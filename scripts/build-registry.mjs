@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url"
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 
 export const NAMESPACE = "@aynsdev"
-export const REGISTRY_URL = "https://raw.githubusercontent.com/aynsdev/design-system/main/public/r/{name}.json"
+export const REGISTRY_URL = "https://raw.githubusercontent.com/aynsdev/ui/main/public/r/{name}.json"
 
 const ns = (name) => `${NAMESPACE}/${name}`
 
@@ -252,7 +252,7 @@ items.push({
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "aynsdev",
-  homepage: "https://github.com/aynsdev/design-system",
+  homepage: "https://github.com/aynsdev/ui",
   items,
 }
 

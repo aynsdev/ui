@@ -7,6 +7,17 @@ A refined, minimalist design system: pure neutral greys, a near-black dark mode,
 - Every docs page has **Copy → Copy as Markdown / Copy for Claude / Copy for Codex**.
 - The contract is [`DESIGN.md`](./DESIGN.md).
 
+## At a glance
+
+| | |
+| --- | --- |
+| **Type** | Inter, weight 500 for all text, 600 for titles, 700 for large headings. Geist Mono for code and shortcuts. |
+| **Colour** | Pure neutral greys. Light: `#F5F5F5` canvas, white surfaces. Dark: `#0A0A0A` canvas, `#161616` / `#1F1F1F` raised surfaces. Colour only where it has a role (status, focus, brand). |
+| **Surfaces** | Fill, not lines: cards, tables, alerts and accordion rows separate by tone, without borders or shadows. Shadows are for popovers and dialogs only. |
+| **Radii** | Pills for buttons, badges, segmented controls and icon buttons. 12px inputs, 10px menu items, 16px menus, tables and toasts, 24px cards and dialogs. |
+| **Controls** | Heights 28 / 32 / 40 / 48 / 56px. Avatars 32 / 40 / 48 / 64px. 40px is the default for buttons, inputs and selects. |
+| **Motion** | 120–240ms ease-out, opacity and subtle transforms only; respects `prefers-reduced-motion`. |
+
 ## Install in a React project
 
 The project needs shadcn/ui set up (`npx shadcn@latest init`). Add the registry to `components.json`:
@@ -14,7 +25,7 @@ The project needs shadcn/ui set up (`npx shadcn@latest init`). Add the registry 
 ```json
 {
   "registries": {
-    "@aynsdev": "https://raw.githubusercontent.com/aynsdev/design-system/main/public/r/{name}.json"
+    "@aynsdev": "https://raw.githubusercontent.com/aynsdev/ui/main/public/r/{name}.json"
   }
 }
 ```
@@ -37,13 +48,19 @@ import { Button } from "@/components/ui/button"
 <Button loading={saving}>Save changes</Button>
 ```
 
-**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
+**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, accordion, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
+
+### Component notes
+
+- `NativeSelect`: `className` sizes the wrapper, so the chevron follows the width. Style the `<select>` itself with `selectClassName`.
+- `AvatarGroup`: the ring that separates avatars uses the page background. On a card, pass `className="*:data-[slot=avatar]:ring-card"`.
+- `Card interactive`: shows a soft outline on hover rather than a permanent border.
 
 ### Point your coding agent at the rules
 
 ```md
 ## Design
-Follow DESIGN.md from github.com/aynsdev/design-system for all UI work.
+Follow DESIGN.md from github.com/aynsdev/ui for all UI work.
 Install components with `npx shadcn@latest add @aynsdev/<name>` before writing new ones.
 Don't hard-code colors, spacing or radii: use the theme tokens.
 ```

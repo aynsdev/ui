@@ -6,7 +6,7 @@ import { Switch } from "@/components/ui/switch"
 
 export default function FieldForm() {
   return (
-    <form className="grid max-w-md gap-6" onSubmit={(e) => e.preventDefault()}>
+    <form className="grid w-full max-w-md gap-6" onSubmit={(e) => e.preventDefault()}>
       <FieldSet>
         <FieldLegend>Invite a teammate</FieldLegend>
         <FieldGroup>

@@ -15,7 +15,7 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
 
 function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
   return (
-    <legend data-slot="field-legend" className={cn("mb-0 p-0 text-base font-semibold tracking-[-0.015em] text-foreground", className)} {...props} />
+    <legend data-slot="field-legend" className={cn("mb-4 p-0 text-base font-semibold tracking-[-0.015em] text-foreground", className)} {...props} />
   )
 }
 

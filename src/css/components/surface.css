@@ -12,7 +12,6 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   background: var(--surface);
   color: var(--text);
@@ -51,16 +50,16 @@
   border-top: 1px solid var(--border);
 }
 
-.ui-card--flat { background: var(--surface-2); border-color: transparent; }
+.ui-card--flat { background: var(--surface-2); }
 .ui-card--compact .ui-card__header { padding: var(--space-4) var(--space-4) 0; }
 .ui-card--compact .ui-card__body { padding: var(--space-4); }
 
 .ui-card--interactive {
   cursor: pointer;
   text-decoration: none;
-  transition: border-color var(--motion-base) var(--ease-ui), background-color var(--motion-base) var(--ease-ui);
+  transition: box-shadow var(--motion-base) var(--ease-ui), background-color var(--motion-base) var(--ease-ui);
 }
-.ui-card--interactive:hover { border-color: var(--border-strong); }
+.ui-card--interactive:hover { box-shadow: 0 0 0 1px var(--border-strong); }
 .ui-card--interactive:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 /* Stat: KPI inside a card */

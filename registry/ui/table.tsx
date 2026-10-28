@@ -12,7 +12,7 @@ function Table({ className, containerClassName, ...props }: React.ComponentProps
     <div
       data-slot="table-container"
       // relative: contains absolutely positioned cell content (e.g. sr-only labels)
-      className={cn("relative w-full overflow-x-auto rounded-2xl border border-border bg-card", containerClassName)}
+      className={cn("relative w-full overflow-x-auto rounded-2xl bg-card", containerClassName)}
     >
       <table data-slot="table" className={cn("w-full caption-bottom border-collapse text-sm leading-snug", className)} {...props} />
     </div>

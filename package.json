@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/aynsdev/design-system.git"
+    "url": "git+ssh://git@github.com/aynsdev/ui.git"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

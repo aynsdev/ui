@@ -90,7 +90,7 @@
 
 /* Avatar */
 .ui-avatar {
-  --_size: 32px;
+  --_size: 40px;
 
   display: inline-grid;
   place-items: center;
@@ -99,18 +99,20 @@
   height: var(--_size);
   overflow: hidden;
   border-radius: 50%;
-  background: var(--surface-2);
-  color: var(--text-muted);
-  font-size: calc(var(--_size) * 0.38);
+  background: var(--surface-hover);
+  color: var(--text);
+  font-size: calc(var(--_size) * 0.35);
   font-weight: var(--weight-semibold);
   line-height: 1;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 8%, transparent);
+  text-transform: uppercase;
+  user-select: none;
 }
 .ui-avatar > img { width: 100%; height: 100%; object-fit: cover; }
-.ui-avatar--sm { --_size: 24px; }
-.ui-avatar--lg { --_size: 40px; }
-.ui-avatar--square { border-radius: var(--radius-sm); }
+.ui-avatar--sm { --_size: 32px; }
+.ui-avatar--lg { --_size: 48px; }
+.ui-avatar--xl { --_size: 64px; }
+.ui-avatar--square { border-radius: 28%; }
 
-.ui-avatar-stack { display: inline-flex; }
-.ui-avatar-stack > .ui-avatar { box-shadow: 0 0 0 2px var(--bg); }
+.ui-avatar-stack { display: inline-flex; align-items: center; }
+.ui-avatar-stack > .ui-avatar { box-shadow: 0 0 0 3px var(--bg); }
 .ui-avatar-stack > .ui-avatar + .ui-avatar { margin-left: -6px; }

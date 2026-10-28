@@ -184,7 +184,7 @@ import { Input } from "@/components/ui/input"
     api: [
       {
         name: "Card",
-        props: [{ name: "interactive", type: "boolean", default: "false", description: "Hover border, focus ring and pointer cursor for clickable cards." }, asChild],
+        props: [{ name: "interactive", type: "boolean", default: "false", description: "Hover outline, focus ring and pointer cursor for clickable cards." }, asChild],
       },
       { name: "CardHeader / CardTitle / CardDescription / CardAction / CardContent / CardFooter", props: [] },
     ],
@@ -280,7 +280,7 @@ import { Input } from "@/components/ui/input"
       {
         name: "Avatar",
         props: [
-          { name: "size", type: '"sm" | "default" | "lg"', default: '"default"', description: "24, 32 or 40px." },
+          { name: "size", type: '"sm" | "default" | "lg" | "xl"', default: '"default"', description: "32, 40, 48 or 64px." },
           { name: "shape", type: '"circle" | "square"', default: '"circle"', description: "Person or entity." },
         ],
       },
@@ -574,6 +574,6 @@ export const components: ComponentEntry[] = docs.map((d) => {
 export const groups = ["Actions", "Forms", "Data display", "Navigation", "Overlays", "Feedback", "Utilities"] as const
 
 export const NAMESPACE = "@aynsdev"
-export const REGISTRY_URL = "https://raw.githubusercontent.com/aynsdev/design-system/main/public/r/{name}.json"
-export const REPO_URL = "https://github.com/aynsdev/design-system"
+export const REGISTRY_URL = "https://raw.githubusercontent.com/aynsdev/ui/main/public/r/{name}.json"
+export const REPO_URL = "https://github.com/aynsdev/ui"
 export const utilsSource = (sources["../../registry/lib/utils.ts"] ?? "").trimEnd()
