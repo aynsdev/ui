@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-switcher",
+  "title": "Theme Switcher",
+  "description": "System / Light / Dark segmented control.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme",
+    "@aynsdev/segmented-control",
+    "@aynsdev/use-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/theme-switcher.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { MonitorIcon, MoonIcon, SunIcon } from \"lucide-react\"\n\nimport { useTheme, type Theme } from \"@/hooks/use-theme\"\nimport { SegmentedControl, SegmentedControlItem } from \"@/components/ui/segmented-control\"\n\n/** System / Light / Dark. The selection always reflects the stored choice, including System. */\nfunction ThemeSwitcher({ showLabels = false, size = \"sm\" }: { showLabels?: boolean; size?: \"sm\" | \"default\" }) {\n  const { theme, setTheme } = useTheme()\n  const options: { value: Theme; label: string; icon: React.ReactNode }[] = [\n    { value: \"system\", label: \"System\", icon: <MonitorIcon /> },\n    { value: \"light\", label: \"Light\", icon: <SunIcon /> },\n    { value: \"dark\", label: \"Dark\", icon: <MoonIcon /> },\n  ]\n  return (\n    <SegmentedControl aria-label=\"Theme\" size={size} value={theme} onValueChange={(v) => setTheme(v as Theme)}>\n      {options.map((o) => (\n        <SegmentedControlItem key={o.value} value={o.value} aria-label={showLabels ? undefined : o.label}>\n          {o.icon}\n          {showLabels && o.label}\n        </SegmentedControlItem>\n      ))}\n    </SegmentedControl>\n  )\n}\n\nexport { ThemeSwitcher }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

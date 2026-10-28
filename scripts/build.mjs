@@ -1,6 +1,7 @@
-// Inlines the @import chain of src/index.css into a single dist/design-system.css
-// (for CDN / <link> use without a bundler) and copies ui.js alongside it.
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
+// Builds the distributable package:
+//   dist/design-system.css      all CSS with the @import chain inlined (+ .min.css)
+//   dist/ui.js                  vanilla behaviour layer for non-React projects
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -14,8 +15,11 @@ function inline(file, seen = new Set()) {
   return css.replace(/@import\s+"(\.[^"]+)";\s*/g, (_, rel) => inline(resolve(dirname(file), rel), seen) + "\n");
 }
 
+rmSync(resolve(root, "dist"), { recursive: true, force: true });
+mkdirSync(resolve(root, "dist"), { recursive: true });
+
 const banner = `/*! ${pkg.name} v${pkg.version} */\n`;
-const css = banner + inline(resolve(root, "src/index.css"));
+const css = banner + inline(resolve(root, "src/css/index.css"));
 const minified = banner + css
   .replace(/\/\*[\s\S]*?\*\//g, "")
   .replace(/\s+/g, " ")
@@ -23,10 +27,9 @@ const minified = banner + css
   .replace(/;}/g, "}")
   .trim();
 
-mkdirSync(resolve(root, "dist"), { recursive: true });
 writeFileSync(resolve(root, "dist/design-system.css"), css);
 writeFileSync(resolve(root, "dist/design-system.min.css"), minified);
-copyFileSync(resolve(root, "src/ui.js"), resolve(root, "dist/ui.js"));
+copyFileSync(resolve(root, "src/vanilla/ui.js"), resolve(root, "dist/ui.js"));
 
 console.log(`dist/design-system.css      ${(css.length / 1024).toFixed(1)} kB`);
 console.log(`dist/design-system.min.css  ${(minified.length / 1024).toFixed(1)} kB`);

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Placeholder that mirrors the real layout.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/skeleton.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Mirror the real layout so nothing jumps when content arrives. */\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      aria-hidden=\"true\"\n      className={cn(\"h-3 animate-pulse rounded-md bg-secondary motion-reduce:animate-none\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

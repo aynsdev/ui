@@ -1,0 +1,781 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "aynsdev",
+  "homepage": "https://github.com/aynsdev/design-system",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "Theme",
+      "description": "Pure neutral greys, a near-black dark mode, Inter at weight 500, generous radii, and the extra tokens the components use.",
+      "cssVars": {
+        "theme": {
+          "font-sans": "\"Inter\", \"Geist\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+          "font-mono": "\"Geist Mono\", ui-monospace, \"SFMono-Regular\", Menlo, monospace",
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "color-subtle-foreground": "var(--subtle-foreground)",
+          "color-border-strong": "var(--border-strong)",
+          "color-pressed": "var(--pressed)",
+          "color-success": "var(--success)",
+          "color-warning": "var(--warning)",
+          "color-info": "var(--info)",
+          "color-brand": "var(--brand)",
+          "color-brand-foreground": "var(--brand-foreground)",
+          "color-overlay": "var(--overlay)",
+          "shadow-popover": "var(--popover-shadow)",
+          "shadow-dialog": "var(--dialog-shadow)",
+          "radius-2xl": "calc(var(--radius) + 8px)",
+          "radius-3xl": "calc(var(--radius) + 12px)"
+        },
+        "light": {
+          "radius": "0.75rem",
+          "background": "#f5f5f5",
+          "foreground": "#171717",
+          "card": "#ffffff",
+          "card-foreground": "#171717",
+          "popover": "#ffffff",
+          "popover-foreground": "#171717",
+          "primary": "#171717",
+          "primary-foreground": "#fafafa",
+          "secondary": "#ebebeb",
+          "secondary-foreground": "#171717",
+          "muted": "#ebebeb",
+          "muted-foreground": "#5c5c5c",
+          "accent": "#e5e5e5",
+          "accent-foreground": "#171717",
+          "destructive": "#b42318",
+          "destructive-foreground": "#ffffff",
+          "border": "#e8e8e8",
+          "input": "#dedede",
+          "ring": "#4f78c7",
+          "subtle-foreground": "#8a8a8a",
+          "border-strong": "#d1d1d1",
+          "pressed": "#dcdcdc",
+          "success": "#19724b",
+          "warning": "#946200",
+          "info": "#4f78c7",
+          "brand": "#171717",
+          "brand-foreground": "#fafafa",
+          "overlay": "rgb(10 10 10 / 0.4)",
+          "popover-shadow": "0 0 0 1px rgb(0 0 0 / 0.04), 0 12px 32px -8px rgb(0 0 0 / 0.16)",
+          "dialog-shadow": "0 0 0 1px rgb(0 0 0 / 0.04), 0 32px 64px -16px rgb(0 0 0 / 0.24)"
+        },
+        "dark": {
+          "background": "#0a0a0a",
+          "foreground": "#fafafa",
+          "card": "#161616",
+          "card-foreground": "#fafafa",
+          "popover": "#1c1c1c",
+          "popover-foreground": "#fafafa",
+          "primary": "#fafafa",
+          "primary-foreground": "#0a0a0a",
+          "secondary": "#1f1f1f",
+          "secondary-foreground": "#fafafa",
+          "muted": "#1f1f1f",
+          "muted-foreground": "#a1a1a1",
+          "accent": "#262626",
+          "accent-foreground": "#fafafa",
+          "destructive": "#f97066",
+          "destructive-foreground": "#0a0a0a",
+          "border": "#222222",
+          "input": "#2e2e2e",
+          "ring": "#a5beff",
+          "subtle-foreground": "#737373",
+          "border-strong": "#404040",
+          "pressed": "#303030",
+          "success": "#52c593",
+          "warning": "#f5bc59",
+          "info": "#a5beff",
+          "brand": "#fafafa",
+          "brand-foreground": "#0a0a0a",
+          "overlay": "rgb(0 0 0 / 0.64)",
+          "popover-shadow": "0 0 0 1px rgb(255 255 255 / 0.06), 0 12px 32px -8px rgb(0 0 0 / 0.6)",
+          "dialog-shadow": "0 0 0 1px rgb(255 255 255 / 0.06), 0 32px 64px -16px rgb(0 0 0 / 0.7)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "body": {
+            "font-weight": "500",
+            "letter-spacing": "-0.011em",
+            "-webkit-font-smoothing": "antialiased",
+            "-moz-osx-font-smoothing": "grayscale",
+            "text-rendering": "optimizeLegibility"
+          },
+          "::selection": {
+            "background-color": "color-mix(in oklab, var(--ring) 28%, transparent)"
+          },
+          "h1, h2, h3, h4": {
+            "text-wrap": "balance"
+          }
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "The signature component. Pill-shaped, eight variants, five sizes, icon sizes and a width-preserving loading state.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented Control",
+      "description": "A compact track for switching a related mode or filter.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/segmented-control.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Single-line text input.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line text input.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "The native <select> with a custom chevron.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible label for form controls.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Label, control, description and error with consistent rhythm.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/label"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox with indeterminate state.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "One choice from a short, visible list.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Toggle for settings that apply immediately.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A filled surface with generous corners.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Stacked, filled disclosure rows for questions and details.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "title": "Stat",
+      "description": "KPI with tabular numerals and a signed delta.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/stat.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status and metadata labels.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Inline message about the state of a page or task.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A person or workspace, as an image or initials.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Switch between views of the same object.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "nav",
+      "type": "registry:ui",
+      "title": "Nav",
+      "description": "Vertical navigation for app sidebars.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/nav.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Where a page sits in a hierarchy.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Move through pages of results.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Actions or options anchored to a trigger.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog with focus trap and an obvious way out.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A short hint on hover or focus.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Toast (Sonner)",
+      "description": "Brief, situational feedback after an action.",
+      "dependencies": [
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Native table for dense data with aligned numbers.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Explains what is missing and offers one next step.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Placeholder that mirrors the real layout.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Inline loading indicator.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Determinate progress bar.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A thin divider for when spacing alone is ambiguous.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard shortcut hint.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "use-theme",
+      "type": "registry:hook",
+      "title": "useTheme",
+      "description": "Light / dark / system theme with the .dark class, persisted to localStorage.",
+      "files": [
+        {
+          "path": "registry/hooks/use-theme.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "theme-switcher",
+      "type": "registry:ui",
+      "title": "Theme Switcher",
+      "description": "System / Light / Dark segmented control.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/segmented-control",
+        "@aynsdev/use-theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/theme-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "all",
+      "type": "registry:style",
+      "title": "Everything",
+      "description": "The theme and every component.",
+      "registryDependencies": [
+        "@aynsdev/theme",
+        "@aynsdev/button",
+        "@aynsdev/segmented-control",
+        "@aynsdev/input",
+        "@aynsdev/textarea",
+        "@aynsdev/native-select",
+        "@aynsdev/label",
+        "@aynsdev/field",
+        "@aynsdev/checkbox",
+        "@aynsdev/radio-group",
+        "@aynsdev/switch",
+        "@aynsdev/card",
+        "@aynsdev/accordion",
+        "@aynsdev/stat",
+        "@aynsdev/badge",
+        "@aynsdev/alert",
+        "@aynsdev/avatar",
+        "@aynsdev/tabs",
+        "@aynsdev/nav",
+        "@aynsdev/breadcrumb",
+        "@aynsdev/pagination",
+        "@aynsdev/dropdown-menu",
+        "@aynsdev/dialog",
+        "@aynsdev/tooltip",
+        "@aynsdev/sonner",
+        "@aynsdev/table",
+        "@aynsdev/empty",
+        "@aynsdev/skeleton",
+        "@aynsdev/spinner",
+        "@aynsdev/progress",
+        "@aynsdev/separator",
+        "@aynsdev/kbd",
+        "@aynsdev/use-theme",
+        "@aynsdev/theme-switcher"
+      ],
+      "files": []
+    }
+  ]
+}

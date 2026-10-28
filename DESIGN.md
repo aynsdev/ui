@@ -1,16 +1,16 @@
 DESIGN.md — Shared Product Design System
-Version: 1.0 · Style: Refined, editorial minimalism · Scope: Websites, SaaS dashboards, desktop apps, and mobile products
+Version: 2.0 · Style: Soft, confident minimalism · Scope: Websites, SaaS dashboards, desktop apps, and mobile products
 
 For AI agents (Codex, Claude Code, Cursor, Copilot): Read this entire file before making UI changes. Treat it as the default visual design contract across projects. Respect an existing project's brand and workflows. If a project-specific design file conflicts with this file, the project-specific requirement wins. Never sacrifice functionality to make an interface look minimal.
 
 0. Intent
-Build products that feel considered, calm, contemporary, and distinctly crafted. Establish a coherent visual language through refined typography, restrained color, precise spacing, carefully designed buttons, and consistent interaction patterns.
+Build products that feel considered, calm, contemporary, and distinctly crafted. Establish a coherent visual language through medium-weight typography, pure neutral color, filled surfaces with generous corners, pill-shaped actions, and consistent interaction patterns.
 
 The shared identity comes from typography, spacing, geometry, contrast, and interaction quality, not from forcing all products to use the same logo, accent color, layout, or personality.
 Five principles
 1. Typography does the heavy lifting. Use confident headings, readable body text, and a small number of deliberate weights.
 2. Buttons are designed, not default. Every control has intentional dimensions, alignment, surface treatment, and feedback.
-3. Quiet surfaces, strong hierarchy. Neutrals carry the interface; color appears only when it has a role.
+3. Fill, not lines. Surfaces separate through tone (a white card on a light grey page, a raised grey on near-black), not through borders and shadows. Color appears only when it has a role.
 4. Clarity over decoration. No unnecessary gradients, glows, floating stickers, or ornamental helper copy.
 5. Polish without losing capability. Preserve advanced workflows, dense data, and existing features. Simplify presentation, not the underlying product.
 1. How to apply this system to another product
@@ -33,27 +33,28 @@ Priority order
 2. Typography
 Typography should feel crisp, confident, and quietly expressive—not futuristic, cartoonish, or overly corporate.
 Font stack
-- Primary UI + marketing: Geist, or Inter if Geist is unavailable. Pick one per project and use it consistently.
+- Primary UI + marketing: Inter (variable), with Geist as the fallback. Pick one per project and use it consistently.
 - Optional display alternative: Inter Tight for large editorial headlines only, if the product's identity benefits from it. Do not mix fonts merely for variety.
 - Monospace: Geist Mono, SFMono-Regular, or equivalent for timestamps, code, timecodes, keyboard shortcuts, and technical measurements only.
 - Fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif.
 - Self-host only fonts you are authorized to use. Respect system fonts where native platform conventions matter.
 Type scale (desktop defaults)
 Role	Size	Weight	Line-height	Letter-spacing	Usage
-Display	clamp(44px, 5.5vw, 80px)	600–700	0.98–1.06	-0.055em to -0.04em	Marketing hero only
-H1	clamp(32px, 4vw, 52px)	600–700	1.08–1.14	-0.045em	Page opening
+Display	clamp(44px, 5.5vw, 80px)	700–800	0.98–1.04	-0.055em	Marketing hero only
+H1	clamp(32px, 4vw, 52px)	700	1.08–1.14	-0.045em	Page opening
 H2	28px	600	1.18	-0.035em	Major section
 H3	22px	600	1.24	-0.025em	Subsection
 H4	18px	600	1.35	-0.018em	Panel heading
-Body large	16px	400	1.6	-0.01em	Explanatory copy
-Body	14px	400	1.5	-0.005em	Application content
-UI	13px	500	1.35	0	Buttons, inputs, menus
-Caption	12px	400–500	1.4	0	Secondary metadata
+Body large	16px	500	1.6	-0.011em	Explanatory copy
+Body	14px	500	1.5	-0.011em	Application content
+UI	14px	500	1.35	-0.01em	Buttons, inputs, menus
+Caption	12px	500	1.4	0	Secondary metadata
 Micro	11px	500–600	1.3	0.01em	Dense indicators only
 
 
 Rules
 - Prefer sentence case. Avoid shouting in uppercase for ordinary labels.
+- Medium (500) is the base weight for all text, including body copy and muted text; it reads confident and stays crisp on both themes. Use 600 for titles and 700+ for large headings. Use 400 only for code and long technical text.
 - Use bold selectively; visual hierarchy should not depend on bolding everything.
 - Use short, purposeful headings. Avoid repeating a heading as a paragraph underneath.
 - Body copy generally stays 14–16px; avoid forcing tiny text to make a dashboard look sophisticated.
@@ -62,21 +63,21 @@ Rules
 - Use tabular numerals for KPIs, prices, timestamps, and timeline positions (font-variant-numeric: tabular-nums).
 - Avoid artificially spaced-out headline letters, excessive gradient text, and mixed font families without purpose.
 3. Color philosophy and semantic tokens
-Default palette: warm neutral in light mode; neutral graphite in dark mode. Each product may set its own accent, but must preserve readable contrast. Accent colors are for selected states, high-priority actions, links, and focus when appropriate—not background decoration.
+Default palette: pure neutral greys (no warm or cool tint) in light mode; near-black with raised grey surfaces in dark mode. Each product may set its own accent, but must preserve readable contrast. Accent colors are for selected states, high-priority actions, links, and focus when appropriate—not background decoration.
 Baseline token palette
 Semantic token	Light	Dark	Purpose
---bg	#FAFAF8	#101113	App / page canvas
---surface	#FFFFFF	#17181B	Primary cards, panels
---surface-2	#F3F3F0	#202125	Grouped controls, secondary panels
---surface-hover	#EEEEEA	#2A2C30	Hovered neutral controls
---surface-pressed	#E6E6E1	#32343A	Pressed controls
---text	#181818	#F5F5F3	Main foreground
---text-muted	#666762	#ACADB0	Secondary content
---text-subtle	#858681	#898C90	Tertiary metadata; verify contrast
---border	#E5E5E1	#313238	Hairline separators
---border-strong	#C9C9C3	#505159	Active outlines
---action	#181818	#F4F4F1	Neutral primary actions
---action-text	#FFFFFF	#17181B	Label on primary action
+--bg	#F5F5F5	#0A0A0A	App / page canvas
+--surface	#FFFFFF	#161616	Primary cards, panels
+--surface-2	#EBEBEB	#1F1F1F	Grouped controls, tracks, secondary fills
+--surface-hover	#E5E5E5	#262626	Hovered neutral controls
+--surface-pressed	#DCDCDC	#303030	Pressed controls
+--text	#171717	#FAFAFA	Main foreground
+--text-muted	#5C5C5C	#A1A1A1	Secondary content
+--text-subtle	#8A8A8A	#737373	Tertiary metadata; verify contrast
+--border	#E8E8E8	#222222	Soft surface edges
+--border-strong	#D1D1D1	#404040	Control outlines on hover, active outlines
+--action	#171717	#FAFAFA	Neutral primary actions
+--action-text	#FAFAFA	#0A0A0A	Label on primary action
 --danger	#B42318	#F97066	Destructive / error
 --success	#19724B	#52C593	Success / confirmation
 --warning	#946200	#F5BC59	Caution
@@ -90,8 +91,8 @@ Brand accents
 - Semantic status colors (danger, warning, success) must not be repurposed as decoration.
 - Verify actual contrast for every brand override. Aim for WCAG 2.2 AA: 4.5:1 for normal text; 3:1 for large text and non-text control boundaries/indicators where applicable.
 Dark mode
-- Use layered graphite, not pure black everywhere.
-- Panels must separate through subtle surface differences and borders, not harsh shadows.
+- Near-black canvas (#0A0A0A) with raised grey surfaces (#161616, #1F1F1F); never pure #000 for surfaces.
+- Panels separate through surface tone first; borders are optional and very low contrast. No harsh shadows.
 - Keep muted text legible. Dark mode should not mean everything becomes low contrast.
 - Respect the user's system theme unless the project explicitly has a saved preference.
 - Match states across both themes; don't design light mode and auto-invert it.
@@ -123,17 +124,17 @@ Layout rules
 5. Shape, borders, elevation, and glass
 Radius system
 Token	Radius	Use
---radius-xs	6px	Dense chips / compact controls
---radius-sm	8px	Inputs, utility buttons
---radius-md	10px	Standard interactive controls
---radius-lg	14px	Dialogs, cards, grouped surfaces
---radius-xl	18px	Prominent floating panels
---radius-pill	999px	Primary CTAs, intentional pill controls
+--radius-xs	8px	Checkbox-scale details, chips inside dense UI
+--radius-sm	10px	Menu items, nav items, compact controls
+--radius-md	12px	Inputs, selects, small panels
+--radius-lg	16px	Menus, popovers, tables, toasts
+--radius-xl	24px	Cards, dialogs, disclosure rows, grouped surfaces
+--radius-pill	999px	Buttons, badges, segmented controls, icon buttons
 
 
-Pill buttons are a signature treatment, not a requirement for every control. Marketing CTAs and prominent simple actions can be pill-shaped. Dense toolbars, timeline buttons, table actions, and inspector controls usually use 8–10px radii. Do not mix radically different shapes within the same control group.
+Pill buttons are the signature treatment: every button, icon button, badge and segmented control is fully rounded. Containers get generous corners (24px for cards and dialogs) and nest with smaller radii inside (padding + inner radius ≈ outer radius). Text inputs stay rectangular-rounded (12px), never pills. Do not mix radically different shapes within the same control group.
 Borders and shadows
-- Prefer 1px low-contrast borders. Use --border-strong selectively to clarify active elements.
+- Separate with fill first: a white surface on the grey canvas, a raised grey on near-black. Add a 1px --border only where tone alone is too faint (e.g. cards on white). Use --border-strong selectively to clarify active elements.
 - Prefer subtle surface shifts to big drop shadows.
 - Keep shadows scarce: popovers and floating dialogs only; avoid shadowing every card.
 - Never add fake inset highlights or glowing outlines across the entire app.
@@ -147,23 +148,23 @@ Glassmorphism
 Buttons deserve as much design care as headings. They should feel precise, tactile, calm, and confident. Small controls and prominent actions should share a coherent visual language while remaining appropriate to their context.
 Sizes
 Size	Height	Horizontal padding	Text	Radius	Example use
-xs	28px	10px	12px / 500	8px	Dense desktop toolbar only
-sm	32px	12px	12–13px / 500	8px	Table / inspector / menus
-md	38px	16px	13px / 500–600	10px	Standard app actions
-lg	44px	20px	14px / 600	Pill or 12px	Prominent actions
-xl	48px	24px	14–15px / 600	Pill	Marketing CTAs
+xs	28px	12px	12px / 500	Pill	Dense desktop toolbar only
+sm	32px	14px	13px / 500	Pill	Table / inspector / menus
+md	40px	20px	14px / 500	Pill	Standard app actions
+lg	48px	24px	15px / 500	Pill	Prominent actions
+xl	56px	28px	16px / 500	Pill	Marketing CTAs
 
 
 Variants
 1. Primary: --action fill, --action-text label, crisp contrast; optional brand-colored replacement through project theme.
-2. Secondary: --surface fill, 1px --border, normal foreground. No exaggerated shadow.
+2. Secondary / outline: --surface fill (a white pill on the grey canvas), 1px --border, normal foreground. No exaggerated shadow.
 3. Soft / tertiary: --surface-2 fill, no heavy border. Useful for grouped controls.
 4. Ghost: transparent until hover; for toolbar or lower-emphasis actions.
 5. Destructive: reserved for delete / irreversible operations; pair with confirmation when necessary.
 6. Link-style: actual text link / subtle inline action, not a fake button.
 Interaction requirements
 - Hover: small but visible surface/contrast change; no dramatic scaling.
-- Pressed: slightly deeper surface and/or subtle 1px visual depression; never jump the layout.
+- Pressed: slightly deeper surface and a subtle scale to 98%; never jump the layout.
 - Focus-visible: visible 2px focus ring, offset enough not to blend into borders.
 - Disabled: lower emphasis but still recognizable; no confusing hover animation.
 - Loading: replace or accompany label with spinner/progress without changing button width; prevent duplicate submissions.
@@ -173,40 +174,44 @@ Interaction requirements
 - Use actual <button> elements for actions; anchors for navigation. Maintain keyboard operation.
 - No fake buttons without a meaningful action.
 Icon buttons
-- Standard app icon buttons: 32–38px square; subtle rounded rectangle.
+- Standard app icon buttons: 32–40px, circular.
 - Touch contexts: at least 44×44px interactive target even if the glyph is smaller.
 - Accessible label / tooltip required for icon-only actions.
 - Tooltips are supplementary, not a replacement for accessible labels.
 - Never mix filled, outlined, and multi-color icon sets indiscriminately.
 Segmented controls (important)
 A compact outer neutral track with clear, quiet selected-state styling:
-- Outer container: --surface-2, 6px inner padding? No — use 3–4px inner padding.
-- Gap: 2–4px; individual item height 28–32px desktop.
-- Selected segment: --surface (light) or a visibly raised neutral surface (dark), small radius, optional extremely subtle border/shadow.
+- Outer container: --surface-2 pill track with 4px inner padding.
+- Gap: 2px; individual item height 28–40px desktop.
+- Selected segment: --surface pill (light) or a visibly raised neutral surface (dark), with an extremely subtle shadow in light mode.
 - Unselected segments: muted labels, transparent fill.
 - No oversized capsules or giant sliding animations.
 - For System / Light / Dark, selection must correctly reflect the actual theme.
 - Distinguish tabs (navigate between views) from segmented controls (switch a related mode/filter). Use correct accessibility semantics.
 7. Other core components
 Inputs and textareas
-- Standard height: 38–40px desktop; 44px+ where touch-first.
-- 8–10px radius; 1px border; flat neutral background.
+- Standard height: 40px desktop; 48px where touch-first.
+- 12px radius; 1px border; --surface background. Never pill-shaped.
 - Labels remain visible where the field's purpose may be unclear. Placeholder is an example, not a substitute for a label.
 - Focus: --focus ring plus clear border state.
 - Error: concise actionable message near the field; do not rely on color alone.
 - Do not wrap every form control in multiple decorative containers.
 Cards and panels
-- Prefer a flat surface with subtle border; radius 10–14px.
+- A filled --surface on the canvas with 24px corners and 24px padding; a soft border only where needed.
 - Use content hierarchy, not ornamental decoration, to differentiate cards.
-- Do not make cards excessively rounded or float every panel on a giant shadow.
+- Do not float every panel on a giant shadow, and do not go beyond 28px corners.
 - App panels should feel integrated, especially in dense tools. Not every section must be a card.
+Disclosure rows (accordion)
+- Each item is its own filled surface (24px radius, 64px trigger row), stacked with an 8px gap; no dividers.
+- Triggers are the reader's question in sentence case; a circular plus marker rotates to a close mark and fills with --action when open.
+- Use for secondary detail (reasons, risks, FAQs); the main answer stays visible.
 Tabs, navigation, and sidebar
 - Active state should be obvious through foreground and surface treatment, not an arbitrary bright pill on every item.
-- 32–40px row height for desktop navigation; increase where touch is primary.
+- 36–40px row height for desktop navigation, 10–12px radius; increase where touch is primary.
 - Keep icons consistent and labels human-readable.
 - Don't repeat navigation titles as unexplained decoration.
 Menus and popovers
-- Crisp borders, radius 10–12px, subtle elevation, compact 6–8px item padding.
+- No border; a soft elevation ring and shadow, 16px radius, 6px inner padding, 10px-radius items.
 - Consistent alignment for labels, shortcuts, icons, and selection indicators.
 - Full keyboard support, Escape to dismiss, sensible focus handling.
 - Respect viewport boundaries and safe areas.
@@ -271,7 +276,7 @@ Reject these patterns unless explicitly required by the project:
 - Excessive nesting of cards inside cards, particularly with rounded corners and shadows at every level.
 - Random font sizes, arbitrary spacing, inconsistent radii, and unplanned icon sizes.
 - A different button treatment on each screen.
-- Pill-shaped everything: text inputs, toolbars, menus, entire panels, and data tables.
+- Pill-shaped containers: text inputs, menus, entire panels, and data tables. Pills are for actions and small status elements.
 - Low-contrast text falsely presented as sophistication.
 - Hero-scale typography in dense application panels.
 - Decorative labels, unrequested onboarding prompts, fake content, or unexplained tooltips.
@@ -313,22 +318,22 @@ These variables are baseline values. Use the same semantic naming whether the pr
   color-scheme: light;
 
   /* Typography */
-  --font-ui: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-ui: "Inter", "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", "SFMono-Regular", ui-monospace, monospace;
 
   /* Light foundations */
-  --bg: #fafaf8;
+  --bg: #f5f5f5;
   --surface: #ffffff;
-  --surface-2: #f3f3f0;
-  --surface-hover: #eeeeea;
-  --surface-pressed: #e6e6e1;
-  --text: #181818;
-  --text-muted: #666762;
-  --text-subtle: #858681;
-  --border: #e5e5e1;
-  --border-strong: #c9c9c3;
-  --action: #181818;
-  --action-text: #ffffff;
+  --surface-2: #ebebeb;
+  --surface-hover: #e5e5e5;
+  --surface-pressed: #dcdcdc;
+  --text: #171717;
+  --text-muted: #5c5c5c;
+  --text-subtle: #8a8a8a;
+  --border: #e8e8e8;
+  --border-strong: #d1d1d1;
+  --action: #171717;
+  --action-text: #fafafa;
   --danger: #b42318;
   --success: #19724b;
   --warning: #946200;
@@ -338,11 +343,11 @@ These variables are baseline values. Use the same semantic naming whether the pr
   /* --brand: ...; --on-brand: ...; --brand-hover: ...; --brand-soft: ...; */
 
   /* Shape */
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-pill: 999px;
 
   /* Spacing */
@@ -367,18 +372,18 @@ These variables are baseline values. Use the same semantic naming whether the pr
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #101113;
-  --surface: #17181b;
-  --surface-2: #202125;
-  --surface-hover: #2a2c30;
-  --surface-pressed: #32343a;
-  --text: #f5f5f3;
-  --text-muted: #acadb0;
-  --text-subtle: #898c90;
-  --border: #313238;
-  --border-strong: #505159;
-  --action: #f4f4f1;
-  --action-text: #17181b;
+  --bg: #0a0a0a;
+  --surface: #161616;
+  --surface-2: #1f1f1f;
+  --surface-hover: #262626;
+  --surface-pressed: #303030;
+  --text: #fafafa;
+  --text-muted: #a1a1a1;
+  --text-subtle: #737373;
+  --border: #222222;
+  --border-strong: #404040;
+  --action: #fafafa;
+  --action-text: #0a0a0a;
   --danger: #f97066;
   --success: #52c593;
   --warning: #f5bc59;
@@ -391,15 +396,15 @@ These variables are baseline values. Use the same semantic naming whether the pr
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 38px;
-  padding: 0 16px;
+  min-height: 40px;
+  padding: 0 20px;
   border: 1px solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   background: var(--action);
   color: var(--action-text);
   font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -413,7 +418,6 @@ These variables are baseline values. Use the same semantic naming whether the pr
 .ui-button:active:not(:disabled) { opacity: 0.76; }
 .ui-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .ui-button:disabled { opacity: 0.48; cursor: not-allowed; }
-.ui-button--pill { border-radius: var(--radius-pill); }
 .ui-button--secondary {
   background: var(--surface);
   color: var(--text);

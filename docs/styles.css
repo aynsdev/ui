@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../registry/theme.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@source "../registry";
+
+/* Docs-only: code highlighting */
+:root {
+  --code-keyword: #8a3ffc;
+  --code-string: #19724b;
+  --code-tag: #b42318;
+  --code-attr: #946200;
+  --code-comment: var(--subtle-foreground);
+}
+.dark {
+  --code-keyword: #c4a5ff;
+  --code-string: #52c593;
+  --code-tag: #f97066;
+  --code-attr: #f5bc59;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+}

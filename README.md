@@ -1,156 +1,89 @@
-# Design System
+# aynsdev/ui
 
-A refined, minimalist design system for websites, SaaS dashboards, desktop and mobile products.
-Typography carries the hierarchy, neutrals carry the interface, and color appears only when it has a job.
+A refined, minimalist design system: pure neutral greys, a near-black dark mode, Inter at weight 500, filled surfaces with generous radii and pill-shaped actions. It is distributed as a **shadcn registry**: components are copied into your project, and from then on you own them.
 
-- **[DESIGN.md](./DESIGN.md)** is the design contract: principles, rules and anti-patterns. Read it first.
-- **`src/`** has the tokens and components as plain CSS, so they work with any framework.
-- **`docs/index.html`** is the living reference for every component, in light and dark mode.
+- Built on Radix, Tailwind CSS v4 and cva, following the shadcn/ui conventions (`cn`, `data-slot`, `asChild`, `.dark`).
+- One theme item maps the identity onto shadcn's CSS variables, plus a few extra tokens: `success`, `warning`, `info`, `brand`, `subtle-foreground`, `border-strong`, `pressed`, `shadow-popover`, `shadow-dialog`.
+- Every docs page has **Copy → Copy as Markdown / Copy for Claude / Copy for Codex**.
+- The contract is [`DESIGN.md`](./DESIGN.md).
 
-```
-DESIGN.md              the rules (for humans and coding agents)
-PROJECT_THEME.md       per-project override template
-src/
-  tokens.css           colors, type, spacing, radius, motion, light + dark
-  base.css             reset + element defaults (optional)
-  typography.css       .ui-h1 … .ui-caption, .ui-link, .ui-kbd
-  layout.css           .ui-container .ui-stack .ui-row .ui-grid .ui-shell
-  components/          button, icon-button, segmented, form, surface, badge,
-                       navigation, overlay, data
-  index.css            everything above
-  fonts.css            Geist + Geist Mono (Google Fonts, optional)
-  tailwind.css         Tailwind v4 bridge
-  ui.js                menus, tabs, segmented, dialogs, theme, toasts (~5 kB, no deps)
-tokens/tokens.json     same tokens for React Native, SwiftUI, Figma …
-dist/                  single-file bundle for <link> / CDN use
+## Install in a React project
+
+The project needs shadcn/ui set up (`npx shadcn@latest init`). Add the registry to `components.json`:
+
+```json
+{
+  "registries": {
+    "@aynsdev": "https://raw.githubusercontent.com/aynsdev/design-system/main/public/r/{name}.json"
+  }
+}
 ```
 
-## Preview
+Then install everything (the theme replaces the default colours in your global CSS):
 
 ```bash
-npm run docs     # → http://localhost:4321/docs/
+npx shadcn@latest add @aynsdev/all
 ```
 
-Or just open `docs/index.html` in a browser.
-
-## Use it in another project
-
-### 1. Install
+Or install item by item. Each component also brings the theme.
 
 ```bash
-npm i github:aynsdev/design-system          # pin a version with #v1.0.0
+npx shadcn@latest add @aynsdev/theme @aynsdev/button @aynsdev/card
 ```
 
-Or, with no build step, link the bundle from a CDN:
+```tsx
+import { Button } from "@/components/ui/button"
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aynsdev/design-system@v1.0.0/src/fonts.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aynsdev/design-system@v1.0.0/dist/design-system.min.css">
-<script src="https://cdn.jsdelivr.net/gh/aynsdev/design-system@v1.0.0/dist/ui.js" defer></script>
+<Button loading={saving}>Save changes</Button>
 ```
 
-### 2. Import
+**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
 
-```css
-/* app.css */
-@import "@aynsdev/design-system/fonts.css";  /* optional */
-@import "@aynsdev/design-system/css";        /* tokens + base + components */
-@import "./project-theme.css";               /* this product's --brand */
-```
-
-```js
-// main.js — optional behaviour layer (skip if your framework handles menus/dialogs)
-import "@aynsdev/design-system/ui.js";
-```
-
-Only want the foundations? Import `tokens.css` alone and pick components one by one:
-
-```css
-@import "@aynsdev/design-system/tokens.css";
-@import "@aynsdev/design-system/components/button.css";
-```
-
-### 3. Give the project its identity
-
-Copy `PROJECT_THEME.md` into the project, fill it in, and override the four brand tokens
-(`--brand`, `--brand-hover`, `--on-brand`, `--brand-soft`). Everything else stays shared.
-
-### 4. Point your coding agent at the rules
-
-Add this to the project's `CLAUDE.md` / `AGENTS.md`:
+### Point your coding agent at the rules
 
 ```md
 ## Design
-Follow node_modules/@aynsdev/design-system/DESIGN.md for all UI work.
-Project-specific overrides live in PROJECT_THEME.md and take precedence.
-Use the ui-* classes and semantic tokens; don't hard-code colors, spacing or radii.
+Follow DESIGN.md from github.com/aynsdev/design-system for all UI work.
+Install components with `npx shadcn@latest add @aynsdev/<name>` before writing new ones.
+Don't hard-code colors, spacing or radii: use the theme tokens.
 ```
 
-## Framework notes
+Or open the docs, pick a component, choose **Copy → Copy for Claude** and paste it into your session.
 
-**React / Vue / Blade / plain HTML**: use the classes directly.
+## Without React
 
-```jsx
-<button className="ui-button ui-button--secondary ui-button--sm">Cancel</button>
-<button className="ui-button" aria-busy={saving} disabled={saving}>Save changes</button>
-```
-
-**Tailwind v4**: map the tokens to utilities:
+The plain CSS layer (`ui-*` classes) still ships in the npm package for server-rendered and static sites.
 
 ```css
-@import "tailwindcss";
-@import "@aynsdev/design-system/tokens.css";
-@import "@aynsdev/design-system/tailwind.css";
+@import "@aynsdev/design-system/fonts.css";  /* optional: Inter */
+@import "@aynsdev/design-system/css";        /* tokens + base + components */
 ```
 
 ```html
-<div class="bg-surface border border-border rounded-lg p-5 text-ui text-muted">…</div>
+<button class="ui-button ui-button--secondary ui-button--sm">Cancel</button>
+<script src="node_modules/@aynsdev/design-system/dist/ui.js"></script> <!-- menus, tabs, dialogs, toasts -->
 ```
 
-**shadcn/ui or shadcn-vue**: point their CSS variables at these tokens
-(`--background: var(--bg)`, `--primary: var(--action)`, `--ring: var(--focus)` …) instead of
-replacing the component library.
+In this layer the theme is set with `<html data-theme="light|dark">`; with no attribute it follows the OS. For React Native / Expo, import `@aynsdev/design-system/tokens.json`.
 
-**React Native / Expo**: import `tokens.json` into your theme file. Letter-spacing values are
-in `em`, so multiply them by the font size.
+## Repo layout
 
-## Theming
-
-| Markup | Result |
+| Path | What |
 | --- | --- |
-| *(no attribute)* | Follows the OS setting |
-| `<html data-theme="light">` | Forced light |
-| `<html data-theme="dark">` | Forced dark |
+| `registry/ui`, `registry/hooks`, `registry/lib` | Registry sources: the files `shadcn add` copies |
+| `scripts/build-registry.mjs` | Item list and theme (single source of truth). Writes `registry.json`, `registry/theme.css`, `public/r/*.json` |
+| `public/r` | Built registry, served from GitHub raw |
+| `docs/` | Docs app (Vite + React). Examples live in `docs/examples/<id>/NN-name.tsx` |
+| `src/css`, `src/vanilla` | Plain CSS + vanilla JS layer, built to `dist/` |
+| `tokens/tokens.json` | Tokens for non-CSS platforms |
 
-`ui.js` persists the choice: `UI.theme.set("system" | "light" | "dark")`.
+## Developing
 
-## Components
-
-| Component | Classes |
-| --- | --- |
-| Button | `ui-button` + `--secondary --soft --ghost --danger --danger-soft --brand --link`, `--xs --sm --lg --xl`, `--pill --block`, `aria-busy="true"` |
-| Icon button | `ui-icon-button` + `--secondary --soft --primary`, `--xs --sm --lg`, `--round` |
-| Segmented | `ui-segmented` > `ui-segmented__item[role=radio]` |
-| Field | `ui-field`, `ui-label`, `ui-hint`, `ui-error-text`, `ui-input`, `ui-textarea`, `ui-select`, `ui-input-group` |
-| Choice | `ui-check` with `ui-checkbox`, `ui-radio`, `ui-switch` |
-| Card | `ui-card` + `__header __title __description __body __footer`, `--compact --flat --interactive` |
-| Stat | `ui-stat` + `__label __value __delta(--up/--down)` |
-| Badge | `ui-badge` + `--success --warning --danger --info --brand --outline --strong --sm --pill` |
-| Alert | `ui-alert` + `--info --success --warning --danger` |
-| Avatar | `ui-avatar` + `--sm --lg --square`, `ui-avatar-stack` |
-| Tabs | `ui-tabs` > `ui-tab[role=tab]`, `ui-tab-panel` |
-| Sidebar nav | `ui-nav`, `ui-nav__section`, `ui-nav__item[aria-current=page]` |
-| Breadcrumbs / pagination | `ui-breadcrumbs`, `ui-pagination` |
-| Menu / popover | `ui-menu-anchor`, `ui-menu`, `ui-menu__item`, `ui-popover` |
-| Dialog | `<dialog class="ui-dialog">` + `__header __title __body __footer` |
-| Tooltip | `data-tooltip="…"` |
-| Toast | `UI.toast({ title, body, tone })` |
-| Table | `ui-table-wrap` > `ui-table`, `.is-numeric`, `ui-table__sort` |
-| Feedback | `ui-empty`, `ui-skeleton`, `ui-spinner`, `ui-progress` |
-| Layout | `ui-container`, `ui-stack`, `ui-row`, `ui-grid`, `ui-shell` |
-
-## Changing the system
-
-1. Edit `src/` (and `tokens/tokens.json` if you change a token value).
-2. Check the change in `docs/index.html` in both themes.
-3. `npm run build`, commit, and tag a release (`git tag v1.1.0`) so projects can pin to it.
+```bash
+npm install
+npm run dev              # docs at http://localhost:4321
+npm run registry:build   # registry.json, registry/theme.css, public/r
+npm run typecheck
+npm run build            # dist/ (plain CSS layer)
+npm run build:docs       # docs-dist/
+```

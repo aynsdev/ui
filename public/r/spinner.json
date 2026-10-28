@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Inline loading indicator.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/spinner.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst spinnerVariants = cva(\"inline-block shrink-0 animate-spin rounded-full border-border-strong border-t-foreground\", {\n  variants: {\n    size: {\n      sm: \"size-3 border-[1.5px]\",\n      default: \"size-4 border-[1.75px]\",\n      lg: \"size-6 border-2\",\n    },\n  },\n  defaultVariants: { size: \"default\" },\n})\n\n/** Short, inline waits. In buttons use <Button loading> instead. */\nfunction Spinner({\n  className,\n  size,\n  label = \"Loading\",\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof spinnerVariants> & { label?: string }) {\n  return <span data-slot=\"spinner\" role=\"status\" aria-label={label} className={cn(spinnerVariants({ size }), className)} {...props} />\n}\n\nexport { Spinner }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Inline message about the state of a page or task.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/alert.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst alertVariants = cva(\n  \"relative grid w-full grid-cols-[0_1fr] items-start gap-y-1 rounded-2xl px-4 py-3.5 text-sm has-[>svg]:grid-cols-[16px_1fr] has-[>svg]:gap-x-3 has-data-[slot=alert-action]:pr-28 [&>svg]:mt-0.5 [&>svg]:size-4\",\n  {\n    variants: {\n      variant: {\n        default: \"border border-border bg-card text-card-foreground [&>svg]:text-muted-foreground\",\n        info: \"bg-info/10 [&>svg]:text-info\",\n        success: \"bg-success/10 [&>svg]:text-success\",\n        warning: \"bg-warning/12 [&>svg]:text-warning\",\n        destructive: \"bg-destructive/10 [&>svg]:text-destructive\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  }\n)\n\n/** Inline message about the state of a page or task. Name what happened and the recovery step. */\nfunction Alert({ className, variant, ...props }: React.ComponentProps<\"div\"> & VariantProps<typeof alertVariants>) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role={variant === \"destructive\" ? \"alert\" : \"status\"}\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"alert-title\" className={cn(\"col-start-2 leading-snug font-semibold text-foreground\", className)} {...props} />\n}\n\nfunction AlertDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div data-slot=\"alert-description\" className={cn(\"col-start-2 leading-normal text-muted-foreground [&_p]:leading-normal\", className)} {...props} />\n  )\n}\n\n/** One action, usually a small outline Button. */\nfunction AlertAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"alert-action\" className={cn(\"absolute top-1/2 right-3.5 -translate-y-1/2\", className)} {...props} />\n}\n\nexport { Alert, AlertAction, AlertDescription, AlertTitle }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

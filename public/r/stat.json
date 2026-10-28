@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stat",
+  "title": "Stat",
+  "description": "KPI with tabular numerals and a signed delta.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/stat.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** A KPI: label, value with tabular numerals, and an optional signed delta. */\nfunction Stat({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"stat\" className={cn(\"grid gap-1\", className)} {...props} />\n}\n\nfunction StatLabel({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"stat-label\" className={cn(\"text-xs text-muted-foreground\", className)} {...props} />\n}\n\nfunction StatValue({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"stat-value\"\n      className={cn(\"text-[32px] leading-[1.05] font-bold tracking-[-0.04em] tabular-nums\", className)}\n      {...props}\n    />\n  )\n}\n\nconst statDeltaVariants = cva(\"text-xs tabular-nums\", {\n  variants: {\n    trend: {\n      neutral: \"text-muted-foreground\",\n      up: \"text-success\",\n      down: \"text-destructive\",\n    },\n  },\n  defaultVariants: { trend: \"neutral\" },\n})\n\n/** Always include the sign or direction in the text. Colour alone is not enough. */\nfunction StatDelta({ className, trend, ...props }: React.ComponentProps<\"div\"> & VariantProps<typeof statDeltaVariants>) {\n  return <div data-slot=\"stat-delta\" className={cn(statDeltaVariants({ trend }), className)} {...props} />\n}\n\nexport { Stat, StatDelta, StatLabel, StatValue }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

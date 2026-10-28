@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "Explains what is missing and offers one next step.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils",
+    "@aynsdev/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/empty.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Explain what is missing and offer one next step. */\nfunction Empty({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty\"\n      className={cn(\"flex min-w-0 flex-1 flex-col items-center justify-center gap-5 px-6 py-12 text-center text-balance\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"empty-header\" className={cn(\"flex max-w-sm flex-col items-center gap-2\", className)} {...props} />\n}\n\nfunction EmptyMedia({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-media\"\n      className={cn(\n        \"mb-1 grid size-12 place-items-center rounded-2xl bg-secondary text-muted-foreground [&_svg:not([class*='size-'])]:size-5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction EmptyTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"empty-title\" className={cn(\"text-base font-semibold tracking-[-0.015em]\", className)} {...props} />\n}\n\nfunction EmptyDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  return <p data-slot=\"empty-description\" className={cn(\"text-sm leading-normal text-muted-foreground\", className)} {...props} />\n}\n\nfunction EmptyContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"empty-content\" className={cn(\"flex items-center gap-2\", className)} {...props} />\n}\n\nexport { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

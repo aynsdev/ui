@@ -1,0 +1,72 @@
+/*
+ * Icon button — always needs an accessible label.
+ *
+ * <button class="ui-icon-button" aria-label="Settings" data-tooltip="Settings"><svg …/></button>
+ *
+ * Variants: (ghost) --secondary --soft --primary    Sizes: --xs (28) --sm (32) (md 36) --lg (38)
+ */
+
+.ui-icon-button {
+  --_size: 36px;
+  --_icon: 16px;
+  --_bg: transparent;
+  --_bg-hover: var(--surface-hover);
+  --_bg-active: var(--surface-pressed);
+  --_fg: var(--text-muted);
+  --_fg-hover: var(--text);
+  --_border: transparent;
+
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--_size);
+  height: var(--_size);
+  padding: 0;
+  border: 1px solid var(--_border);
+  border-radius: var(--radius-pill);
+  background: var(--_bg);
+  color: var(--_fg);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--motion-fast) var(--ease-ui),
+    color var(--motion-fast) var(--ease-ui),
+    border-color var(--motion-fast) var(--ease-ui);
+}
+
+.ui-icon-button > svg { width: var(--_icon); height: var(--_icon); }
+
+.ui-icon-button:hover:not(:disabled) { background: var(--_bg-hover); color: var(--_fg-hover); }
+.ui-icon-button:active:not(:disabled) { background: var(--_bg-active); }
+.ui-icon-button[aria-pressed="true"] { background: var(--surface-pressed); color: var(--text); }
+.ui-icon-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ui-icon-button:disabled { opacity: 0.48; cursor: not-allowed; }
+
+.ui-icon-button--secondary { --_bg: var(--surface); --_bg-hover: var(--surface-2); --_border: var(--border); --_fg: var(--text); }
+.ui-icon-button--soft { --_bg: var(--surface-2); --_fg: var(--text); }
+.ui-icon-button--primary {
+  --_bg: var(--action);
+  --_bg-hover: color-mix(in srgb, var(--action) 86%, var(--bg));
+  --_bg-active: color-mix(in srgb, var(--action) 76%, var(--bg));
+  --_fg: var(--action-text);
+  --_fg-hover: var(--action-text);
+}
+
+.ui-icon-button--xs { --_size: 28px; --_icon: 14px; }
+.ui-icon-button--sm { --_size: 32px; --_icon: 14px; }
+.ui-icon-button--lg { --_size: 40px; --_icon: 18px; }
+.ui-icon-button--round { border-radius: var(--radius-pill); }
+
+/* Touch: extend the hit area to 44×44 without changing the visual size */
+@media (pointer: coarse) {
+  .ui-icon-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, var(--touch-target));
+    height: max(100%, var(--touch-target));
+    transform: translate(-50%, -50%);
+  }
+}
