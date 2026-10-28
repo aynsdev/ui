@@ -70,6 +70,9 @@ function Button({
     loading?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
+  // Only attach the guards while blocked, so an idle Button can render from a
+  // React Server Component (event handlers can't cross that boundary).
+  const blocked = Boolean(loading || disabled)
 
   return (
     <Comp
@@ -81,16 +84,21 @@ function Button({
       {...props}
       disabled={!asChild ? disabled || loading : undefined}
       aria-disabled={disabled || loading || undefined}
-      onClickCapture={(event) => {
-        if (loading || disabled) { event.preventDefault(); event.stopPropagation(); return }
-        onClickCapture?.(event)
-      }}
-      onKeyDownCapture={(event) => {
-        if ((loading || disabled) && (event.key === "Enter" || event.key === " ")) {
-          event.preventDefault(); event.stopPropagation(); return
-        }
-        onKeyDownCapture?.(event)
-      }}
+      onClickCapture={
+        blocked
+          ? (event) => { event.preventDefault(); event.stopPropagation() }
+          : onClickCapture
+      }
+      onKeyDownCapture={
+        blocked
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault(); event.stopPropagation(); return
+              }
+              onKeyDownCapture?.(event)
+            }
+          : onKeyDownCapture
+      }
     >
       {loading && !asChild ? (
         <>
