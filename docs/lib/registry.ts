@@ -22,6 +22,30 @@ const asChild: Prop = { name: "asChild", type: "boolean", default: "false", desc
 
 export const docs: ComponentDoc[] = [
   {
+    id: "contribution-grid",
+    group: "Data display",
+    usage: `import { ContributionGrid } from "@/components/ui/contribution-grid"
+
+<ContributionGrid
+  year={2026}
+  data={[{ date: "2026-01-05", count: 8 }]}
+/>`,
+    guidelines: [
+      "A GitHub-style calendar using the system’s neutral foreground and surface tokens in both themes.",
+      "Supply complete data for the selected calendar year. Missing dates represent zero; future dates also show zero. Fetch data outside this presentation component.",
+      "Intensity is relative to the busiest day in the displayed year. Use the daily breakdown for exact values and comparisons between years.",
+      "Dates are UTC calendar dates in YYYY-MM-DD format. Invalid counts and out-of-year dates are ignored; duplicate dates use the last valid count.",
+      "The calendar scrolls within its container on small screens. View daily counts provides keyboard, touch and screen reader access to every value.",
+      "An empty array renders a zero-activity year. Handle loading and fetch failures in the parent so they are not mistaken for zero activity.",
+    ],
+    api: [{ name: "ContributionGrid", props: [
+      { name: "year", type: "number", description: "Required calendar year, an integer from 1000 to 9999." },
+      { name: "data", type: "Contribution[]", description: "Required array of { date: string, count: number }. Counts must be nonnegative safe integers." },
+      { name: "label", type: "string", default: '"Contributions"', description: "Visible caption and accessible calendar name." },
+      { name: "className", type: "string", description: "Additional classes on the figure; standard figure props are also supported." },
+    ] }],
+  },
+  {
     id: "button",
     group: "Actions",
     usage: `import { Button } from "@/components/ui/button"

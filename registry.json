@@ -356,6 +356,23 @@
       ]
     },
     {
+      "name": "contribution-grid",
+      "type": "registry:ui",
+      "title": "Contribution Grid",
+      "description": "A yearly activity calendar with neutral intensity levels and accessible daily counts.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/contribution-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "stat",
       "type": "registry:ui",
       "title": "Stat",
@@ -768,6 +785,7 @@
         "@aynsdev/switch",
         "@aynsdev/card",
         "@aynsdev/accordion",
+        "@aynsdev/contribution-grid",
         "@aynsdev/stat",
         "@aynsdev/badge",
         "@aynsdev/alert",

@@ -224,6 +224,7 @@ export const items = [
   ui("switch", "Switch", "Toggle for settings that apply immediately.", { deps: RADIX }),
   ui("card", "Card", "A filled surface with generous corners.", { deps: RADIX }),
   ui("accordion", "Accordion", "Stacked, filled disclosure rows for questions and details.", { deps: [...RADIX, ...ICONS] }),
+  ui("contribution-grid", "Contribution Grid", "A yearly activity calendar with neutral intensity levels and accessible daily counts."),
   ui("stat", "Stat", "KPI with tabular numerals and a signed delta.", { deps: CVA }),
   ui("badge", "Badge", "Status and metadata labels.", { deps: [...RADIX, ...CVA] }),
   ui("alert", "Alert", "Inline message about the state of a page or task.", { deps: CVA }),

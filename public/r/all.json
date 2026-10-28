@@ -17,6 +17,7 @@
     "@aynsdev/switch",
     "@aynsdev/card",
     "@aynsdev/accordion",
+    "@aynsdev/contribution-grid",
     "@aynsdev/stat",
     "@aynsdev/badge",
     "@aynsdev/alert",

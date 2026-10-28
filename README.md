@@ -49,7 +49,7 @@ import { Button } from "@/components/ui/button"
 <Button loading={saving}>Save changes</Button>
 ```
 
-**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, accordion, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
+**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, accordion, contribution-grid, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
 
 ### Component notes
 
