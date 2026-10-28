@@ -16,7 +16,7 @@ const badgeVariants = cva(
         warning: "bg-warning/12 text-warning",
         destructive: "bg-destructive/12 text-destructive",
         info: "bg-info/12 text-info",
-        brand: "bg-brand/12 text-brand",
+        brand: "bg-brand-soft text-brand-soft-foreground",
       },
       size: {
         default: "",

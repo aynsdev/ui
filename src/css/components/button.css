@@ -134,7 +134,7 @@
 .ui-button--brand {
   --_bg: var(--brand);
   --_bg-hover: var(--brand-hover);
-  --_bg-active: color-mix(in srgb, var(--brand) 78%, var(--bg));
+  --_bg-active: var(--brand-pressed);
   --_fg: var(--on-brand);
 }
 

@@ -107,6 +107,9 @@
   /* Brand — neutral by default; a project overrides these four */
   --brand: var(--action);
   --brand-hover: color-mix(in srgb, var(--brand) 88%, var(--bg));
+  --brand-pressed: color-mix(in srgb, var(--brand) 78%, var(--bg));
+  --brand-foreground: var(--on-brand);
+  --brand-soft-foreground: var(--text);
   --on-brand: var(--action-text);
   --brand-soft: var(--surface-2);
 }

@@ -38,6 +38,8 @@ Save as `project-theme.css` and load it **after** the design system. Check contr
 :root {
   --brand: #2f5d50;
   --brand-hover: #264c42;
+  --brand-pressed: #203f37;
+  --brand-soft-foreground: #264c42;
   --on-brand: #ffffff;
   --brand-soft: #e8efec;
   /* --font-ui: "Inter", -apple-system, sans-serif;  only if justified */
@@ -47,6 +49,8 @@ Save as `project-theme.css` and load it **after** the design system. Check contr
   :root:not([data-theme="light"]) {
     --brand: #7fc4ad;
     --brand-hover: #95d0bc;
+    --brand-pressed: #aedcca;
+    --brand-soft-foreground: #95d0bc;
     --on-brand: #0f1a16;
     --brand-soft: #1b2925;
   }
@@ -55,7 +59,11 @@ Save as `project-theme.css` and load it **after** the design system. Check contr
 :root[data-theme="dark"] {
   --brand: #7fc4ad;
   --brand-hover: #95d0bc;
+    --brand-pressed: #aedcca;
+    --brand-soft-foreground: #95d0bc;
   --on-brand: #0f1a16;
   --brand-soft: #1b2925;
 }
 ```
+
+For the React registry, use `.dark` for the dark override instead of the media query and data-theme selectors. The `--on-brand` token also controls the compatibility alias `--brand-foreground`.

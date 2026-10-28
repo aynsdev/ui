@@ -17,7 +17,7 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80 focus-visible:ring-destructive",
         "destructive-soft":
           "bg-destructive/10 text-destructive hover:bg-destructive/15 active:bg-destructive/20 focus-visible:ring-destructive",
-        brand: "bg-brand text-brand-foreground hover:bg-brand/90 active:bg-brand/80",
+        brand: "bg-brand text-brand-foreground hover:bg-brand-hover active:bg-brand-pressed",
         link: "h-auto! rounded-none px-0! text-foreground underline decoration-border-strong underline-offset-[3px] hover:decoration-current active:scale-100",
       },
       size: {
@@ -59,6 +59,9 @@ function Button({
   asChild = false,
   loading = false,
   children,
+  disabled,
+  onClickCapture,
+  onKeyDownCapture,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -76,10 +79,22 @@ function Button({
       aria-busy={loading || undefined}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
+      disabled={!asChild ? disabled || loading : undefined}
+      aria-disabled={disabled || loading || undefined}
+      onClickCapture={(event) => {
+        if (loading || disabled) { event.preventDefault(); event.stopPropagation(); return }
+        onClickCapture?.(event)
+      }}
+      onKeyDownCapture={(event) => {
+        if ((loading || disabled) && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault(); event.stopPropagation(); return
+        }
+        onKeyDownCapture?.(event)
+      }}
     >
       {loading && !asChild ? (
         <>
-          <span className="invisible inline-flex items-center gap-[inherit]">{children}</span>
+          <span className="opacity-0 inline-flex items-center gap-[inherit]">{children}</span>
           <span
             aria-hidden="true"
             className="absolute inset-0 m-auto size-4 animate-spin rounded-full border-[1.75px] border-current border-r-transparent"

@@ -5,6 +5,7 @@ A refined, minimalist design system: pure neutral greys, a near-black dark mode,
 - Built on Radix, Tailwind CSS v4 and cva, following the shadcn/ui conventions (`cn`, `data-slot`, `asChild`, `.dark`).
 - One theme item maps the identity onto shadcn's CSS variables, plus a few extra tokens: `success`, `warning`, `info`, `brand`, `subtle-foreground`, `border-strong`, `pressed`, `shadow-popover`, `shadow-dialog`.
 - Every docs page has **Copy → Copy as Markdown / Copy for Claude / Copy for Codex**.
+- Brand guidance: [`BRAND.md`](./BRAND.md). The docs **Patterns** page demonstrates settings, searchable data and first-use flows.
 - The contract is [`DESIGN.md`](./DESIGN.md).
 
 ## At a glance

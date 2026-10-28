@@ -11,14 +11,17 @@ function Card({
   className,
   asChild = false,
   interactive = false,
+  density = "comfortable",
   ...props
-}: React.ComponentProps<"div"> & { asChild?: boolean; interactive?: boolean }) {
+}: React.ComponentProps<"div"> & { asChild?: boolean; interactive?: boolean; density?: "comfortable" | "compact" }) {
   const Comp = asChild ? Slot.Root : "div"
   return (
     <Comp
       data-slot="card"
+      data-density={density}
       className={cn(
         "flex min-w-0 flex-col gap-5 rounded-3xl bg-card py-6 text-card-foreground",
+        density === "compact" && "gap-3 rounded-2xl py-4 [&>[data-slot]]:px-4",
         interactive &&
           "cursor-pointer no-underline transition-shadow duration-150 ease-out outline-none hover:shadow-[0_0_0_1px_var(--border-strong)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className

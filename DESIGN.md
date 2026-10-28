@@ -463,3 +463,10 @@ Each project may add this small override file next to DESIGN.md:
 A design-system implementation succeeds when the product looks coherent without calling attention to its styling: typography feels deliberate, buttons and controls feel satisfying, light/dark modes feel equally considered, dense workflows remain efficient, and the app still does everything it did before.
 
 The goal is not “more minimalist.” It is “more intentional.”
+17. Brand and composition reference
+The shared system's own identity is defined in BRAND.md. Product themes remain free to use their own identity. Reference compositions live on the docs Patterns page.
+- Comfortable surfaces use 24px padding; compact surfaces use 16px. Card exposes density="comfortable|compact". Dense forms and tables use 12–16px group gaps; touch targets must remain comfortable.
+- H4 (18px) is a panel heading. Compact card titles and field legends use 16px / 600. Long explanatory prose may use weight 400; controls remain 500.
+- Brand overrides define --brand, --on-brand, --brand-hover, --brand-pressed, --brand-soft and --brand-soft-foreground. --brand-foreground is a compatibility alias for --on-brand in React.
+- Loading actions block pointer and keyboard activation while preserving their accessible name and width.
+- KPI direction and sentiment are independent: lower error rates are positive; higher costs may be negative. StatDelta uses sentiment for colour and trend only for direction metadata.

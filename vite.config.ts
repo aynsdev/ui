@@ -9,7 +9,7 @@ const at = (p: string) => fileURLToPath(new URL(p, import.meta.url))
 export default defineConfig({
   root: "docs",
   base: "./",
-  publicDir: false,
+  publicDir: "public",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -1,4 +1,6 @@
 import * as React from "react"
+import lightLogo from "./assets/logo-light-mode.svg"
+import logo from "./assets/logo-dark-mode.svg"
 import { MenuIcon, XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -11,6 +13,7 @@ import { href, useRoute, type Route } from "./lib/router"
 import { ComponentPage } from "./pages/component-page"
 import { Installation } from "./pages/installation"
 import { Introduction } from "./pages/introduction"
+import { Patterns } from "./pages/patterns"
 import { Theming } from "./pages/theming"
 
 const isActive = (route: Route, target: Route) =>
@@ -21,6 +24,7 @@ function Sidebar({ route }: { route: Route }) {
     ["Introduction", { page: "introduction" }],
     ["Installation", { page: "installation" }],
     ["Theming", { page: "theming" }],
+    ["Patterns", { page: "patterns" }],
   ]
   return (
     <Nav aria-label="Documentation">
@@ -77,8 +81,9 @@ export function App() {
             {menuOpen ? <XIcon /> : <MenuIcon />}
           </Button>
           <a href="#/" className="flex items-center gap-2 text-[15px] font-semibold tracking-[-0.02em]">
-            <span aria-hidden="true" className="grid size-6 place-items-center rounded-md bg-primary text-[11px] text-primary-foreground">
-              a
+            <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center">
+              <img src={lightLogo} alt="" width={32} height={32} className="size-8 dark:hidden" />
+              <img src={logo} alt="" width={32} height={32} className="hidden size-8 dark:block" />
             </span>
             aynsdev/ui
           </a>
@@ -108,6 +113,7 @@ export function App() {
             {route.page === "introduction" && <Introduction />}
             {route.page === "installation" && <Installation />}
             {route.page === "theming" && <Theming />}
+            {route.page === "patterns" && <Patterns />}
             {route.page === "component" &&
               (entry ? (
                 <ComponentPage key={entry.id} entry={entry} />

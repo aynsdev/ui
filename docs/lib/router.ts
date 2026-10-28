@@ -1,11 +1,11 @@
 import * as React from "react"
 
-export type Route = { page: "introduction" | "installation" | "theming" } | { page: "component"; id: string }
+export type Route = { page: "introduction" | "installation" | "theming" | "patterns" } | { page: "component"; id: string }
 
 function parse(hash: string): Route {
   const path = hash.replace(/^#\/?/, "")
   if (path.startsWith("components/")) return { page: "component", id: path.slice("components/".length) }
-  if (path === "installation" || path === "theming") return { page: path }
+  if (path === "patterns" || path === "installation" || path === "theming") return { page: path }
   return { page: "introduction" }
 }
 

@@ -227,10 +227,10 @@ import { Input } from "@/components/ui/input"
 <Stat>
   <StatLabel>Revenue</StatLabel>
   <StatValue>₱482,900</StatValue>
-  <StatDelta trend="up">+12.4%</StatDelta>
+  <StatDelta trend="up" sentiment="positive">+12.4%</StatDelta>
 </Stat>`,
     guidelines: ["Values use tabular numerals so columns line up.", "Write the sign or direction in the delta text; colour alone is not enough.", "Say what the delta compares against."],
-    api: [{ name: "StatDelta", props: [{ name: "trend", type: '"neutral" | "up" | "down"', default: '"neutral"', description: "Colour only. Up is success, down is destructive." }] }],
+    api: [{ name: "StatDelta", props: [{ name: "trend", type: '"neutral" | "up" | "down"', default: '"neutral"', description: "Direction metadata only; include direction in the visible label." }, { name: "sentiment", type: '"neutral" | "positive" | "negative"', default: '"neutral"', description: "Meaning of the change, independent of direction." }] }],
   },
   {
     id: "badge",

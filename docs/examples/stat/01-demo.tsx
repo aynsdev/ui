@@ -16,7 +16,7 @@ export default function StatDemo() {
             <Stat>
               <StatLabel>{s.label}</StatLabel>
               <StatValue>{s.value}</StatValue>
-              <StatDelta trend={s.trend}>{s.delta} vs last month</StatDelta>
+              <StatDelta trend={s.trend} sentiment="positive">{s.delta} vs last month</StatDelta>
             </Stat>
           </CardContent>
         </Card>

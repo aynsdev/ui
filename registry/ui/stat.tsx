@@ -24,18 +24,18 @@ function StatValue({ className, ...props }: React.ComponentProps<"div">) {
 
 const statDeltaVariants = cva("text-xs tabular-nums", {
   variants: {
-    trend: {
+    sentiment: {
       neutral: "text-muted-foreground",
-      up: "text-success",
-      down: "text-destructive",
+      positive: "text-success",
+      negative: "text-destructive",
     },
   },
-  defaultVariants: { trend: "neutral" },
+  defaultVariants: { sentiment: "neutral" },
 })
 
 /** Always include the sign or direction in the text. Colour alone is not enough. */
-function StatDelta({ className, trend, ...props }: React.ComponentProps<"div"> & VariantProps<typeof statDeltaVariants>) {
-  return <div data-slot="stat-delta" className={cn(statDeltaVariants({ trend }), className)} {...props} />
+function StatDelta({ className, sentiment, trend, ...props }: React.ComponentProps<"div"> & VariantProps<typeof statDeltaVariants> & { /** Direction only; use sentiment for colour. */ trend?: "up" | "down" | "neutral" }) {
+  return <div data-slot="stat-delta" data-trend={trend} className={cn(statDeltaVariants({ sentiment }), className)} {...props} />
 }
 
 export { Stat, StatDelta, StatLabel, StatValue }
