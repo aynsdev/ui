@@ -31,7 +31,7 @@ function AccordionTrigger({ className, children, ...props }: React.ComponentProp
         data-slot="accordion-trigger"
         className={cn(
           "group/accordion flex min-h-16 flex-1 items-center justify-between gap-4 rounded-3xl px-6 py-4 text-left text-base font-medium tracking-[-0.015em] outline-none",
-          "transition-colors duration-150 hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50",
+          "transition-colors motion-reduce:transition-none! duration-(--motion-fast) hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset disabled:pointer-events-none disabled:opacity-50",
           className
         )}
         {...props}
@@ -39,7 +39,7 @@ function AccordionTrigger({ className, children, ...props }: React.ComponentProp
         {children}
         <span
           aria-hidden="true"
-          className="grid size-7 shrink-0 place-items-center rounded-full bg-secondary text-muted-foreground transition-[rotate,background-color,color] duration-200 ease-out group-data-[state=open]/accordion:rotate-45 group-data-[state=open]/accordion:bg-primary group-data-[state=open]/accordion:text-primary-foreground"
+          className="grid size-7 shrink-0 place-items-center rounded-full bg-secondary text-muted-foreground transition-[rotate,background-color,color] motion-reduce:transition-none! duration-(--motion-slow) ease-out group-data-[state=open]/accordion:rotate-45 group-data-[state=open]/accordion:bg-primary group-data-[state=open]/accordion:text-primary-foreground"
         >
           <PlusIcon className="size-3.5" />
         </span>
@@ -52,7 +52,7 @@ function AccordionContent({ className, children, ...props }: React.ComponentProp
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="overflow-hidden text-[15px] leading-relaxed text-muted-foreground data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+      className="overflow-hidden text-[15px] leading-relaxed text-muted-foreground motion-reduce:animate-none! data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
       {...props}
     >
       <div className={cn("px-6 pb-6", className)}>{children}</div>

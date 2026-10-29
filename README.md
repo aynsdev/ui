@@ -49,7 +49,7 @@ import { Button } from "@/components/ui/button"
 <Button loading={saving}>Save changes</Button>
 ```
 
-**Items:** theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, accordion, contribution-grid, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
+**Items:** popover, alert-dialog, sheet, combobox, date-picker (includes DateRangePicker), input-group, activity-feed, data-table, use-field, theme, button, segmented-control, input, textarea, native-select, label, field, checkbox, radio-group, switch, card, accordion, contribution-grid, stat, badge, alert, avatar, tabs, nav, breadcrumb, pagination, dropdown-menu, dialog, tooltip, sonner, table, empty, skeleton, spinner, progress, separator, kbd, theme-switcher, use-theme, all.
 
 ### Component notes
 
@@ -102,6 +102,11 @@ npm install
 npm run dev              # docs at http://localhost:4321
 npm run registry:build   # registry.json, registry/theme.css, public/r
 npm run typecheck
+npm run test:components # calendar, field associations and registry checks
 npm run build            # dist/ (plain CSS layer)
 npm run build:docs       # docs-dist/
 ```
+
+## Component verification
+
+See [TESTING.md](./TESTING.md) for the repeatable theme, viewport, keyboard, motion and state checks. New examples load on demand so calendar and combobox dependencies are not fetched on unrelated component pages.

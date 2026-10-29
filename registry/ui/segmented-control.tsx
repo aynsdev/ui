@@ -7,7 +7,7 @@ import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const segmentedItemVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap text-muted-foreground transition-[background-color,color,border-color] duration-150 ease-out outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-[0_1px_2px_rgb(0_0_0/0.06),0_0_0_1px_rgb(0_0_0/0.04)] dark:data-[state=on]:bg-pressed dark:data-[state=on]:shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap text-muted-foreground transition-[background-color,color,border-color] motion-reduce:transition-none! duration-(--motion-fast) ease-out outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-[0_1px_2px_rgb(0_0_0/0.06),0_0_0_1px_rgb(0_0_0/0.04)] dark:data-[state=on]:bg-pressed dark:data-[state=on]:shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
   {
     variants: {
       size: {
@@ -40,15 +40,17 @@ function SegmentedControl({
     defaultValue?: string
     onValueChange?: (value: string) => void
   }) {
+  const [internalValue, setInternalValue] = React.useState(defaultValue ?? "")
   return (
     <ToggleGroupPrimitive.Root
       type="single"
       data-slot="segmented-control"
-      value={value}
-      defaultValue={defaultValue}
+      value={value ?? internalValue}
       // A segmented control always has a selection: ignore attempts to deselect
       onValueChange={(v) => {
-        if (v) onValueChange?.(v)
+        if (!v) return
+        if (value === undefined) setInternalValue(v)
+        onValueChange?.(v)
       }}
       className={cn("inline-flex w-fit items-center gap-0.5 rounded-full bg-secondary p-1", className)}
       {...props}

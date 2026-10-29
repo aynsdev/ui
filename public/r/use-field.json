@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-field",
+  "title": "useField",
+  "description": "Stable IDs and explicit accessible associations for a field, description and error.",
+  "files": [
+    {
+      "path": "registry/hooks/use-field.ts",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\n/** Explicit wiring avoids dangling references when optional description/error text is absent. */\nfunction useField({ id, description, error }: { id?: string; description?: string; error?: string } = {}) {\n  const generatedId = React.useId()\n  const controlId = id ?? generatedId\n  return {\n    controlProps: {\n      id: controlId,\n      \"aria-invalid\": Boolean(error) || undefined,\n      \"aria-describedby\": [description && `${controlId}-description`, error && `${controlId}-error`].filter(Boolean).join(\" \") || undefined,\n    },\n    labelProps: { htmlFor: controlId },\n    descriptionProps: { id: `${controlId}-description` },\n    errorProps: { id: `${controlId}-error` },\n  }\n}\nexport { useField }\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,4 +1,4 @@
-import type * as React from "react"
+import * as React from "react"
 
 import registry from "../../registry.json"
 import themeSource from "../../registry/theme.css?raw"
@@ -22,6 +22,140 @@ const asChild: Prop = { name: "asChild", type: "boolean", default: "false", desc
 
 export const docs: ComponentDoc[] = [
   {
+    id: "popover", group: "Overlays",
+    usage: `import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
+
+<Popover>
+  <PopoverTrigger asChild><Button>Options</Button></PopoverTrigger>
+  <PopoverContent aria-label="Options">Contextual controls</PopoverContent>
+</Popover>`,
+    guidelines: ["Name the content with aria-label or aria-labelledby.", "Use for short contextual tasks. Move longer workflows into a Sheet or Dialog.", "Escape closes the popup and returns focus to its trigger."],
+    primitive: radix("Popover"),
+    api: [{ name: "PopoverContent", props: [{ name: "align", type: '"start" | "center" | "end"', default: '"start"', description: "Alignment against the trigger." }, { name: "sideOffset", type: "number", default: "8", description: "Space between the trigger and popup." }] }],
+  },
+  {
+    id: "alert-dialog", group: "Overlays",
+    usage: `import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
+
+<AlertDialog>
+  <AlertDialogTrigger>Archive project</AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogTitle>Archive this project?</AlertDialogTitle>
+    <AlertDialogDescription>It will leave the active project list.</AlertDialogDescription>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={archiveProject}>Archive project</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`,
+    guidelines: ["Always include a title and description naming the object and consequence.", "Cancel receives initial focus. Clicking outside does not confirm or dismiss.", "For async actions, control open, preventDefault on the action click, disable actions while pending, show errors inline, and close only after success."],
+    primitive: radix("Alert Dialog"),
+  },
+  {
+    id: "sheet", group: "Overlays",
+    usage: `import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
+
+<Sheet>
+  <SheetTrigger>Edit project</SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>Edit project</SheetTitle>
+      <SheetDescription>Update project details.</SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>`,
+    guidelines: ["Always provide a title and description. Sheets trap focus and return it to the trigger.", "Use side=bottom for a short mobile task. Long forms should stay scrollable.", "Use controlled open state for save flows and close only after a successful save.", "Fixed edges account for device safe-area insets."],
+    api: [{ name: "SheetContent", props: [{ name: "side", type: '"left" | "right" | "bottom"', default: '"right"', description: "Edge of the viewport to attach to." }] }],
+    primitive: radix("Dialog"),
+  },
+  {
+    id: "combobox", group: "Forms",
+    usage: `import { Combobox } from "@/components/ui/combobox"
+
+<Combobox label="Project" options={[
+  { id: "design", label: "Design system" },
+  { id: "web", label: "Website" },
+]} />`,
+    guidelines: ["Use NativeSelect for short lists that do not need search.", "Uses React Aria throughout the input and popup; do not wrap its internals with another focus primitive.", "Supply stable option IDs. Use selectedKey/onSelectionChange for controlled selection.", "isDisabled, isRequired, isInvalid, description and errorMessage support form states. Use I18nProvider from react-aria-components for locale overrides."],
+    api: [{ name: "Combobox", props: [
+      { name: "options", type: "ComboboxOption[]", description: "Required items: id, label, and optional disabled." },
+      { name: "label", type: "string", description: "Required visible label, associated with the input." },
+      { name: "selectedKey / onSelectionChange", type: "Key | null / (key) => void", description: "Controlled single selection." },
+      { name: "description / errorMessage", type: "string", description: "Associated helper and validation text." },
+      { name: "emptyMessage", type: "string", description: "Message shown when no options match." },
+    ] }],
+  },
+  {
+    id: "date-picker", group: "Forms",
+    usage: `import { parseDate } from "@internationalized/date"
+import { DatePicker, DateRangePicker } from "@/components/ui/date-picker"
+
+<DatePicker label="Due date" defaultValue={parseDate("2026-10-28")} />
+<DateRangePicker label="Reporting period" />`,
+    guidelines: ["Use DatePicker for a single value and DateRangePicker for a start/end pair.", "Values use @internationalized/date, not JavaScript Date, to avoid timezone shifts for calendar dates.", "React Aria handles date segments, calendar keyboard navigation and range validation. Its popup uses the same primitive system.", "Use minValue, maxValue and isDateUnavailable for date constraints. Use I18nProvider for locale overrides.", "isDisabled, isReadOnly, isRequired, isInvalid and errorMessage are supported. The visible label is required."],
+    api: [{ name: "DatePicker / DateRangePicker", props: [
+      { name: "label", type: "string", description: "Required visible field label." },
+      { name: "value / defaultValue", type: "DateValue | { start: DateValue; end: DateValue }", description: "Single date or date range, depending on the component." },
+      { name: "onChange", type: "(value) => void", description: "Receives the selected date or range." },
+      { name: "minValue / maxValue", type: "DateValue", description: "Inclusive selectable bounds." },
+      { name: "description / errorMessage", type: "string", description: "Associated helper and validation messages." },
+    ] }],
+  },
+  {
+    id: "input-group", group: "Forms",
+    usage: `import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
+
+<label htmlFor="budget">Budget in USD</label>
+<InputGroup>
+  <InputGroupAddon aria-hidden="true">$</InputGroupAddon>
+  <InputGroupInput id="budget" type="number" min={0} />
+</InputGroup>`,
+    guidelines: ["Use a visible label outside the group. A prefix is not a label.", "Keep decoration in InputGroupAddon and interactive actions in InputGroupButton.", "Icon-only actions need aria-label. Units not present in the label should be linked with aria-describedby.", "Use useField to associate descriptions and errors without dangling IDs."],
+    api: [{ name: "InputGroup / InputGroupAddon / InputGroupInput / InputGroupButton", props: [] }],
+  },
+  {
+    id: "activity-feed", group: "Data display",
+    usage: `import { ActivityFeed, ActivityFeedItem, ActivityFeedContent, ActivityFeedTime } from "@/components/ui/activity-feed"
+
+<ActivityFeed aria-label="Project activity">
+  <ActivityFeedItem>
+    <ActivityFeedContent>
+      <p>Alex approved the component review.</p>
+      <ActivityFeedTime dateTime="2026-10-28T09:30:00Z">Oct 28, 9:30 AM UTC</ActivityFeedTime>
+    </ActivityFeedContent>
+  </ActivityFeedItem>
+</ActivityFeed>`,
+    guidelines: ["Use a named ordered list with a consistent chronological direction.", "Provide an ISO dateTime value and a readable timestamp with timezone context.", "Indicators are decorative; communicate the event in text.", "Compose with Skeleton and Empty for loading and first-use states."],
+    api: [{ name: "ActivityFeed / ActivityFeedItem / ActivityFeedIndicator / ActivityFeedContent / ActivityFeedTime", props: [] }],
+  },
+  {
+    id: "data-table", group: "Data display",
+    usage: `import { DataTable } from "@/components/ui/data-table"
+
+<DataTable
+  label="Projects"
+  data={[{ id: "design", name: "Design system" }]}
+  columns={[{ id: "name", header: "Project", cell: row => row.name, sortValue: row => row.name }]}
+  getRowId={row => row.id}
+  getRowLabel={row => row.name}
+  searchText={row => row.name}
+  selectable
+/>`,
+    guidelines: ["This is a client-side pattern for modest datasets. For server pagination or virtualization, compose the Table primitives in your application.", "Row IDs must be unique and stable. Selection persists across pages and filters; the header checkbox affects only the current page.", "Numeric sorting uses numbers, not formatted strings. Provide sortValue separately from the rendered cell.", "Loading and errors replace stale rows. Supply onRetry for recoverable errors and emptyAction for first-use states.", "Use onSelectionChange for non-destructive bulk actions. Any destructive action needs an AlertDialog."],
+    api: [{ name: "DataTable", props: [
+      { name: "data / columns", type: "T[] / DataTableColumn<T>[]", description: "Rows and columns with id, header, cell, optional sortValue and numeric." },
+      { name: "getRowId / getRowLabel", type: "(row: T) => string", description: "Stable identity and readable selection label." },
+      { name: "label", type: "string", description: "Accessible table name." },
+      { name: "searchText", type: "(row: T) => string", description: "Enables search over returned text." },
+      { name: "filters", type: "{ value, label, matches }[]", description: "Optional preset filters; values must be unique and nonempty." },
+      { name: "pageSize", type: "number", default: "10", description: "Rows displayed per page." },
+      { name: "selectable / onSelectionChange", type: "boolean / (ids: string[]) => void", description: "Enable selection and receive IDs after user changes." },
+      { name: "loading / error / onRetry / emptyAction", type: "boolean / string / () => void / ReactNode", description: "Loading, recovery and first-use states." },
+    ] }],
+  },
+
+  {
     id: "contribution-grid",
     group: "Data display",
     usage: `import { ContributionGrid } from "@/components/ui/contribution-grid"
@@ -32,8 +166,8 @@ export const docs: ComponentDoc[] = [
 />`,
     guidelines: [
       "A GitHub-style calendar using the system’s neutral foreground and surface tokens in both themes.",
-      "Supply complete data for the selected calendar year. Missing dates represent zero; future dates also show zero. Fetch data outside this presentation component.",
-      "Intensity is relative to the busiest day in the displayed year. Use the daily breakdown for exact values and comparisons between years.",
+      "Supply complete data for the selected calendar year. Missing dates represent zero; use endDate to distinguish future or unavailable dates. Fetch data outside this presentation component.",
+      "Intensity defaults to the busiest day in the displayed year. Supply the same thresholds across calendars for consistent comparisons. Use the daily breakdown for exact values and comparisons between years.",
       "Dates are UTC calendar dates in YYYY-MM-DD format. Invalid counts and out-of-year dates are ignored; duplicate dates use the last valid count.",
       "The calendar scrolls within its container on small screens. View daily counts provides keyboard, touch and screen reader access to every value.",
       "An empty array renders a zero-activity year. Handle loading and fetch failures in the parent so they are not mistaken for zero activity.",
@@ -41,7 +175,10 @@ export const docs: ComponentDoc[] = [
     api: [{ name: "ContributionGrid", props: [
       { name: "year", type: "number", description: "Required calendar year, an integer from 1000 to 9999." },
       { name: "data", type: "Contribution[]", description: "Required array of { date: string, count: number }. Counts must be nonnegative safe integers." },
-      { name: "label", type: "string", default: '"Contributions"', description: "Visible caption and accessible calendar name." },
+      { name: "endDate", type: "string", description: "Last available YYYY-MM-DD date. Later dates use dashed outlines and are excluded from totals." },
+      { name: "thresholds", type: "readonly [number, number, number]", description: "Increasing positive integer upper bounds for levels 1–3. Counts above the last bound use level 4." },
+      { name: "locale", type: "string", default: '"en"', description: "Locale for date labels and numbers; surrounding interface copy is English." },
+      { name: "label", type: "string", default: '"Contributions"' , description: "Visible caption and accessible calendar name." },
       { name: "className", type: "string", description: "Additional classes on the figure; standard figure props are also supported." },
     ] }],
   },
@@ -148,6 +285,7 @@ import { Input } from "@/components/ui/input"
   <FieldDescription>We only use this for sign-in.</FieldDescription>
 </Field>`,
     guidelines: [
+      "useField({ description, error }) returns controlProps, labelProps, descriptionProps and errorProps. Spread them on the matching parts to wire IDs, aria-describedby and aria-invalid. The hook installs with Field.",
       "Label above the control, description below, error replaces nothing: it appears under the control.",
       "Errors say what to do: “Enter a full domain, like acme.com”, not “Invalid input”.",
       "Set aria-invalid on the control and point aria-describedby at the FieldError id.",
@@ -533,7 +671,7 @@ toast.success("Changes saved")`,
 type RegistryItem = (typeof registry.items)[number] & { dependencies?: string[]; registryDependencies?: string[] }
 const items = registry.items as RegistryItem[]
 
-const exampleModules = import.meta.glob<{ default: React.ComponentType }>("../examples/*/*.tsx", { eager: true })
+const exampleModules = import.meta.glob<{ default: React.ComponentType }>("../examples/*/*.tsx")
 const exampleSources = import.meta.glob<string>("../examples/*/*.tsx", { eager: true, query: "?raw", import: "default" })
 const sources = import.meta.glob<string>(["../../registry/ui/*.tsx", "../../registry/hooks/*.ts", "../../registry/lib/*.ts"], {
   eager: true,
@@ -554,7 +692,7 @@ function examplesFor(id: string): Example[] {
       return {
         slug,
         title: slug === "demo" ? "Demo" : slug.replace(/-/g, " ").replace(/^./, (c) => c.toUpperCase()),
-        Component: exampleModules[p].default,
+        Component: React.lazy(exampleModules[p]),
         source: exampleSources[p].trimEnd(),
       }
     })
@@ -573,7 +711,7 @@ export type ComponentEntry = ComponentDoc & {
 
 function filesFor(item: RegistryItem): FileSource[] {
   const own = (item.files ?? []).map((f) => f.path)
-  const hooks = (item.registryDependencies ?? []).includes("@aynsdev/use-theme") ? ["registry/hooks/use-theme.ts"] : []
+  const hooks = ["use-theme", "use-field"].filter(name => (item.registryDependencies ?? []).includes(`@aynsdev/${name}`)).map(name => `registry/hooks/${name}.ts`)
   return [...own, ...hooks].map((path) => ({
     path,
     target: path.replace(/^registry\/ui\//, "components/ui/").replace(/^registry\/hooks\//, "hooks/"),

@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-const spinnerVariants = cva("inline-block shrink-0 animate-spin rounded-full border-border-strong border-t-foreground", {
+const spinnerVariants = cva("inline-block shrink-0 animate-spin motion-reduce:animate-none! rounded-full border-border-strong border-t-foreground", {
   variants: {
     size: {
       sm: "size-3 border-[1.5px]",

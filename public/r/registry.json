@@ -34,6 +34,9 @@
         },
         "light": {
           "radius": "0.75rem",
+          "motion-fast": "150ms",
+          "motion-base": "180ms",
+          "motion-slow": "200ms",
           "background": "#f5f5f5",
           "foreground": "#171717",
           "card": "#ffffff",
@@ -249,7 +252,8 @@
       "registryDependencies": [
         "utils",
         "@aynsdev/theme",
-        "@aynsdev/label"
+        "@aynsdev/label",
+        "@aynsdev/use-field"
       ],
       "files": [
         {
@@ -351,6 +355,166 @@
       "files": [
         {
           "path": "registry/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Contextual controls in a compact, focus-aware surface.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "An explicit confirmation before a consequential action.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Side and bottom panels for focused tasks.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Searchable single selection with accessible keyboard navigation.",
+      "dependencies": [
+        "react-aria-components",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Accessible date and date-range entry with a calendar popup.",
+      "dependencies": [
+        "react-aria-components",
+        "@internationalized/date",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Inputs with leading units, icons and trailing actions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/input",
+        "@aynsdev/button"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "activity-feed",
+      "type": "registry:ui",
+      "title": "Activity Feed",
+      "description": "A quiet, chronological list of events and timestamps.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/activity-feed.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:ui",
+      "title": "Data Table",
+      "description": "A client-side table pattern with search, filters, sorting, selection and pagination.",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils",
+        "@aynsdev/theme",
+        "@aynsdev/table",
+        "@aynsdev/input",
+        "@aynsdev/native-select",
+        "@aynsdev/checkbox",
+        "@aynsdev/button",
+        "@aynsdev/skeleton"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/data-table.tsx",
           "type": "registry:ui"
         }
       ]
@@ -734,6 +898,18 @@
       ]
     },
     {
+      "name": "use-field",
+      "type": "registry:hook",
+      "title": "useField",
+      "description": "Stable IDs and explicit accessible associations for a field, description and error.",
+      "files": [
+        {
+          "path": "registry/hooks/use-field.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "use-theme",
       "type": "registry:hook",
       "title": "useTheme",
@@ -785,6 +961,14 @@
         "@aynsdev/switch",
         "@aynsdev/card",
         "@aynsdev/accordion",
+        "@aynsdev/popover",
+        "@aynsdev/alert-dialog",
+        "@aynsdev/sheet",
+        "@aynsdev/combobox",
+        "@aynsdev/date-picker",
+        "@aynsdev/input-group",
+        "@aynsdev/activity-feed",
+        "@aynsdev/data-table",
         "@aynsdev/contribution-grid",
         "@aynsdev/stat",
         "@aynsdev/badge",
@@ -805,6 +989,7 @@
         "@aynsdev/progress",
         "@aynsdev/separator",
         "@aynsdev/kbd",
+        "@aynsdev/use-field",
         "@aynsdev/use-theme",
         "@aynsdev/theme-switcher"
       ],

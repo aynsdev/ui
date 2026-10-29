@@ -49,6 +49,9 @@
 
 :root {
   --radius: 0.75rem;
+  --motion-fast: 150ms;
+  --motion-base: 180ms;
+  --motion-slow: 200ms;
   --background: #f5f5f5;
   --foreground: #171717;
   --card: #ffffff;

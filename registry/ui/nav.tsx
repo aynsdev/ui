@@ -32,7 +32,7 @@ function NavItem({
       data-active={isActive}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "flex h-9 min-w-0 items-center gap-2.5 rounded-lg px-3 text-sm font-medium text-muted-foreground no-underline transition-colors duration-150 outline-none pointer-coarse:h-11",
+        "flex h-9 min-w-0 items-center gap-2.5 rounded-lg px-3 text-sm font-medium text-muted-foreground no-underline transition-colors motion-reduce:transition-none! duration-(--motion-fast) outline-none pointer-coarse:h-11",
         "hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
         "aria-[current=page]:bg-secondary aria-[current=page]:text-foreground",
         "[&>span:not([data-slot])]:truncate [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",

@@ -5,7 +5,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "relative inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm leading-none font-medium tracking-[-0.01em] whitespace-nowrap transition-[background-color,border-color,color,scale] duration-150 ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "relative inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm leading-none font-medium tracking-[-0.01em] whitespace-nowrap transition-[background-color,border-color,color,scale] motion-reduce:transition-none! duration-(--motion-fast) ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] motion-reduce:active:scale-100 disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -105,7 +105,7 @@ function Button({
           <span className="opacity-0 inline-flex items-center gap-[inherit]">{children}</span>
           <span
             aria-hidden="true"
-            className="absolute inset-0 m-auto size-4 animate-spin rounded-full border-[1.75px] border-current border-r-transparent"
+            className="absolute inset-0 m-auto size-4 animate-spin motion-reduce:animate-none! rounded-full border-[1.75px] border-current border-r-transparent"
           />
         </>
       ) : (

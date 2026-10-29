@@ -9,7 +9,8 @@
   "registryDependencies": [
     "utils",
     "@aynsdev/theme",
-    "@aynsdev/label"
+    "@aynsdev/label",
+    "@aynsdev/use-field"
   ],
   "files": [
     {

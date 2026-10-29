@@ -22,7 +22,9 @@ export function ComponentPreview({ example, className }: { example: Example; cla
           }}
           className="flex min-h-56 min-w-0 items-center justify-center overflow-x-auto rounded-3xl border border-border bg-background p-6 sm:p-10"
         >
-          <Component />
+          <React.Suspense fallback={<p role="status" className="text-sm text-muted-foreground">Loading preview…</p>}>
+            <Component />
+          </React.Suspense>
         </div>
       </TabsContent>
       <TabsContent value="code" className="mt-0">

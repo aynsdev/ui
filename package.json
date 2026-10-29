@@ -44,13 +44,15 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "prepare": "node scripts/build.mjs",
-    "brand:build": "node scripts/build-brand-assets.mjs"
+    "brand:build": "node scripts/build-brand-assets.mjs",
+    "test:components": "node tests/components.mjs"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/aynsdev/ui.git"
   },
   "devDependencies": {
+    "@internationalized/date": "^3.12.4",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -60,6 +62,7 @@
     "lucide-react": "^1.62.0",
     "radix-ui": "^1.8.1",
     "react": "^19.3.1",
+    "react-aria-components": "^1.22.1",
     "react-dom": "^19.3.1",
     "shadcn": "^4.23.0",
     "sharp": "^0.35.5",

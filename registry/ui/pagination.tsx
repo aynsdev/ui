@@ -16,7 +16,7 @@ function PaginationItem(props: React.ComponentProps<"li">) {
 }
 
 const pageClass =
-  "inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-full px-3 text-sm text-muted-foreground tabular-nums no-underline transition-colors duration-150 outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring aria-disabled:pointer-events-none aria-disabled:opacity-40 aria-[current=page]:bg-secondary aria-[current=page]:font-semibold aria-[current=page]:text-foreground [&_svg]:size-3.5"
+  "inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-full px-3 text-sm text-muted-foreground tabular-nums no-underline transition-colors motion-reduce:transition-none! duration-(--motion-fast) outline-none hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring aria-disabled:pointer-events-none aria-disabled:opacity-40 aria-[current=page]:bg-secondary aria-[current=page]:font-semibold aria-[current=page]:text-foreground [&_svg]:size-3.5"
 
 /** Use an <a href> (or your router's Link via asChild-style wrapping) so pages are linkable. */
 function PaginationLink({ className, isActive, ...props }: React.ComponentProps<"a"> & { isActive?: boolean }) {
